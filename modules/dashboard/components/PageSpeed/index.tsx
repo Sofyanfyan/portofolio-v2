@@ -5,31 +5,23 @@ import Link from 'next/link'
 import Breakline from '@/components/elements/Breakline'
 import SectionHeading from '@/components/elements/SectionHeading'
 import SectionSubHeading from '@/components/elements/SectionSubHeading'
-import { fetcher } from '@/services/fetcher'
 import { useState } from 'react'
 import { MdSpeed } from 'react-icons/md'
-import useSwr from 'swr'
 
-import { PAGESPEED_CATEGORIES, PAGESPEED_URL } from '@/common/constant'
+import { PAGESPEED_URL } from '@/common/constant'
 
 import BadgeSection from './BadgeSection'
 import SpeedSection from './SpeedSection'
 
-export default function PageSpeed() {
-  const BASE_URL = process.env.NEXT_PUBLIC_PAGE_SPEED_API
-
-  const [url, setUrl] = useState(BASE_URL + PAGESPEED_CATEGORIES)
+export default function PageSpeed({ data }: { data: Record<string, unknown> }) {
   const [active, setActive] = useState('/')
-
-  const { data, isLoading, mutate } = useSwr(url, fetcher)
+  const pageSpeed = (data?.[active] || data?.['/']) as Record<string, unknown> | undefined
 
   function refetch(path: string) {
     setActive(path)
-    setUrl(BASE_URL + path + PAGESPEED_CATEGORIES)
-    mutate()
   }
 
-  if (!data) return null
+  if (!pageSpeed) return null
 
   return (
     <section>
@@ -46,7 +38,7 @@ export default function PageSpeed() {
         </Link>
       </SectionSubHeading>
       <BadgeSection active={active} refetch={refetch} />
-      <SpeedSection data={data} isLoading={isLoading} />
+      <SpeedSection data={pageSpeed} isLoading={false} />
 
       <Breakline />
     </section>

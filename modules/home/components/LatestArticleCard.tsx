@@ -29,16 +29,16 @@ export default function LatestArticleCard({ data, learns, index }: LatestArticle
       event: 'article_clicked',
       article_id: data.id,
       article_title: data.title,
-      article_collection_id: data.collection_id || '',
+      article_collection_id: data.category,
       page_path: pathname
     })
     router.push(generateDetailUrl())
   }
 
   function generateDetailUrl() {
-    if (!data.collection_id) return `/blog/${data.slug}?id=${data.id}&read-mode=true`
-    const collection = learns.find(collection => collection.id === `${data.collection_id}`)
-    return `/learn/${collection?.slug}/${data.slug}?id=${data.id}&read-mode=true`
+    if (data.type === 'blog') return `/blog/${data.slug}`
+    const collection = learns.find(collectionItem => collectionItem.slug === data.learn_slug)
+    return `/learn/${collection?.slug || data.learn_slug}/${data.slug}`
   }
 
   return (

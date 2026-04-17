@@ -5,19 +5,17 @@ import Container from '@/components/elements/Container'
 import ReaderPage from '@/components/elements/ReaderPage'
 import StructuredData from '@/components/elements/StructuredData'
 import { getBlogDetail, getComments } from '@/services/blog'
-import { getBlogViews } from '@/services/view'
 import { BlogPosting, WithContext } from 'schema-dts'
 
 import { METADATA } from '@/common/constant/metadata'
 import { BlogDetailProps, CommentItemProps } from '@/common/types/blog'
 
 type Props = {
-  params: { content: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: { slug: string }
 }
 
-export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
-  const blog = await getBlogDetail({ params, searchParams })
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const blog = await getBlogDetail(params.slug)
   return {
     title: `${blog.title} ${METADATA.exTitle}`,
     description: blog.description,
@@ -27,7 +25,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
       siteName: METADATA.openGraph.siteName,
       locale: METADATA.openGraph.locale,
       type: 'article',
-      authors: blog.user.name
+      authors: METADATA.creator
     },
     keywords: blog.title,
     alternates: {
@@ -48,12 +46,8 @@ function generateStructuredData(blog: BlogDetailProps, comments: CommentItemProp
     url: blog.url,
     author: {
       '@type': 'Person',
-      name: blog.user.name,
-      image: {
-        '@type': 'ImageObject',
-        url: blog.user.profile_image
-      },
-      url: blog.user.website_url
+      name: METADATA.creator,
+      url: process.env.DOMAIN
     },
     image: {
       '@type': 'ImageObject',
@@ -64,17 +58,16 @@ function generateStructuredData(blog: BlogDetailProps, comments: CommentItemProp
   }
 }
 
-export default async function BlogDetailPage({ params, searchParams }: Props) {
-  const blog = await getBlogDetail({ params, searchParams })
-  const pageViewCount = await getBlogViews(searchParams.id as string)
-  const comments = await getComments(searchParams.id as string)
+export default async function BlogDetailPage({ params }: Props) {
+  const blog = await getBlogDetail(params.slug)
+  const comments = await getComments()
 
   return (
     <>
       <StructuredData data={generateStructuredData(blog, comments)} />
       <Container data-aos="fade-left">
         <BackButton url="/blog?category=home" />
-        <ReaderPage content={blog} pageViewCount={pageViewCount} comments={comments} />
+        <ReaderPage content={blog} pageViewCount={blog.page_views_count} comments={comments} />
       </Container>
     </>
   )

@@ -3,6 +3,10 @@ import axios from 'axios'
 import { GITHUB_ACCOUNTS, GITHUB_API_BASE_URL, GITHUB_USER_QUERY } from '@/common/constant/github'
 
 export async function getGithubData() {
+  if (!GITHUB_ACCOUNTS.token) {
+    return null
+  }
+
   const response = await axios.post(
     GITHUB_API_BASE_URL,
     {
@@ -17,5 +21,6 @@ export async function getGithubData() {
       }
     }
   )
-  return response.data?.data.user.contributionsCollection.contributionCalendar
+
+  return response.data?.data?.user?.contributionsCollection?.contributionCalendar || null
 }

@@ -10,61 +10,54 @@ export type UserProps = {
 }
 
 export type BlogItem = {
-  type_of: string
-  id: number
+  id: string
   title: string
   description: string
+  type: 'blog' | 'learn'
+  category: string
+  learn_slug?: string
   published: boolean
   published_at: string
   slug: string
-  path: string
-  url: string
+  path?: string
+  url?: string
   comments_count: number
-  public_reactions_count: number
   page_views_count: number
-  published_timestamp: string
-  body_markdown: string
-  positive_reactions_count: number
+  body_markdown?: string
   cover_image: string
   tag_list: string[]
-  canonical_url: string
   reading_time_minutes: number
-  user: UserProps
-  db_views_count: number
-  total_views_count: number
-  collection_id: number
+  canonical_url?: string
+  external_url?: string
   created_at: string
+  updated_at?: string | null
 }
 
 export type BlogDetailProps = {
-  type_of: string
-  id: number
+  id: string
   title: string
   description: string
-  readable_publish_date: string
+  type: 'blog' | 'learn'
+  category: string
+  learn_slug?: string
+  published: boolean
   slug: string
-  path: string
-  url: string
+  path?: string
+  url?: string
   comments_count: number
-  public_reactions_count: number
-  collection_id: number | null
-  published_timestamp: string
-  positive_reactions_count: number
+  page_views_count: number
   cover_image: string
-  social_image: string
-  canonical_url: string
+  social_image?: string
+  canonical_url?: string
+  external_url?: string
   created_at: string
   edited_at: string | null
-  crossposted_at: string | null
   published_at: string
-  last_comment_at: string | null
   reading_time_minutes: number
-  tag_list: string
+  tag_list: string[]
   tags: string[]
   body_html: string
   body_markdown: string
-  user: UserProps
-  blog_slug: string | null
 }
 
 export type BlogProps = {

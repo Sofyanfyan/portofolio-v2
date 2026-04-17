@@ -5,7 +5,7 @@ import { CommentItemProps } from '@/common/types/blog'
 import CommentItem from './CommentItem'
 
 interface CommentListProps {
-  id: number
+  id: string | number
   totalComments: number
   comments: CommentItemProps[]
 }

@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 
 import { useState } from 'react'
@@ -25,7 +27,14 @@ export default function LeftCollapseNavigation() {
         ) : (
           <div className="flex flex-col items-center gap-8">
             <div className="z-10 rounded-full border-2 border-white shadow-md dark:border-neutral-800">
-              <Image src={PROFILE_URL} alt="profile" width={50} height={50} className="rounded-full xl:h-16 xl:w-16" />
+              <Image
+                src={PROFILE_URL}
+                alt="profile"
+                width={50}
+                height={50}
+                priority
+                className="rounded-full xl:h-16 xl:w-16"
+              />
             </div>
             <ToggleThemeIcon />
           </div>

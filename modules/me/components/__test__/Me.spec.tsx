@@ -7,7 +7,7 @@ import MeSection from '../Me'
 
 describe('MeSection Component', () => {
   it('Should render MeSection component', () => {
-    render(<MeSection careers={careersMock} />)
+    render(<MeSection careers={careersMock} promotions={[]} />)
     expect(screen.getByTestId('go-home')).toBeTruthy()
     expect(screen.getByTestId('currently-working')).toBeTruthy()
     expect(screen.getByTestId('me-profile')).toBeTruthy()

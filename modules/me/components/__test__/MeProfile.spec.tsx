@@ -10,8 +10,15 @@ import MeProfile from '../MeProfile'
 vi.mock('next/image', () => ({
   __esModule: true,
   default: (
-    props: JSX.IntrinsicAttributes & ClassAttributes<HTMLImageElement> & ImgHTMLAttributes<HTMLImageElement>
-  ) => <img {...props} alt="profile" />
+    props: JSX.IntrinsicAttributes &
+      ClassAttributes<HTMLImageElement> &
+      ImgHTMLAttributes<HTMLImageElement> & { priority?: boolean }
+  ) => {
+    const imageProps = { ...props }
+    delete imageProps.priority
+
+    return <img {...imageProps} alt="profile" />
+  }
 }))
 
 describe('MeProfile Component', () => {
@@ -29,14 +36,14 @@ describe('MeProfile Component', () => {
   it('Should render the profile image component', () => {
     const img = screen.getByRole('img')
     expect(img).toBeTruthy()
-    expect(img).toHaveProperty('src', PROFILE_URL)
-    expect(img).toHaveProperty('alt', 'profile')
-    expect(img).toHaveProperty('width', 80)
-    expect(img).toHaveProperty('height', 80)
+    expect(img.getAttribute('src')).toBe(PROFILE_URL)
+    expect(img.getAttribute('alt')).toBe('profile')
+    expect(img.getAttribute('width')).toBe('80')
+    expect(img.getAttribute('height')).toBe('80')
   })
 
   it('Should render author name text', () => {
-    const text = screen.getByText('Bayu Setiawan')
+    const text = screen.getByText('Achmad Sofyan')
     expect(text).toBeTruthy()
     expect(text.className).toBe('font-sora flex-grow text-lg font-medium lg:text-xl')
   })

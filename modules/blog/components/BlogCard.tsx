@@ -24,7 +24,7 @@ export default function BlogCard({
   description,
   slug,
   comments_count,
-  collection_id
+  category
 }: BlogCardProps) {
   const router = useRouter()
   const pathname = usePathname()
@@ -39,10 +39,10 @@ export default function BlogCard({
       event: 'article_clicked',
       article_id: id,
       article_title: title,
-      article_collection_id: collection_id || '',
+      article_collection_id: category,
       page_path: pathname
     })
-    router.push(`/blog/${newSlug}?id=${id}&read-mode=true`)
+    router.push(`/blog/${newSlug}`)
   }
 
   return (

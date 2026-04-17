@@ -2,7 +2,6 @@ import { Metadata } from 'next'
 
 import Container from '@/components/elements/Container'
 import PageHeading from '@/components/elements/PageHeading'
-import { User, getServerSession } from 'next-auth'
 
 import { METADATA } from '@/common/constant/metadata'
 
@@ -21,12 +20,11 @@ const PAGE_TITLE = 'Chat Room'
 const PAGE_DESCRIPTION = 'Leave your impression or suggestion about this website here'
 
 export default async function ChatRoomPage() {
-  const session = await getServerSession()
   return (
     <>
       <Container data-aos="fade-left">
         <PageHeading title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
-        <ChatRoom user={session?.user as User} />
+        <ChatRoom />
       </Container>
     </>
   )

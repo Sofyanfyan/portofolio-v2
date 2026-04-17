@@ -4,6 +4,7 @@ import { unstable_noStore as noStore } from 'next/cache'
 import BackButton from '@/components/elements/BackButton'
 import Container from '@/components/elements/Container'
 import PageHeading from '@/components/elements/PageHeading'
+import { getLearnArticles } from '@/services/blog'
 import { getLearns } from '@/services/codebayu'
 
 import { METADATA } from '@/common/constant/metadata'
@@ -44,6 +45,7 @@ export default async function LearnContentPage({ params }: LearnContentPage) {
   const { content } = await getContent(params.content)
   if (!content) return null
 
+  const articles = await getLearnArticles(content.slug)
   const { title, description } = content
 
   return (
@@ -51,7 +53,7 @@ export default async function LearnContentPage({ params }: LearnContentPage) {
       <Container data-aos="fade-left">
         <BackButton url="/learn" />
         <PageHeading title={title} description={description} />
-        <ContentLists content={content} />
+        <ContentLists content={content} articles={articles} />
       </Container>
     </>
   )

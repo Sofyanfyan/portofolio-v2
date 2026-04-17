@@ -9,10 +9,7 @@ import { BlogItem } from '@/common/types/blog'
 
 export default function BlogThumbnail({ newestBlog }: { newestBlog: BlogItem }) {
   return (
-    <Link
-      href={`/blog/${formatBlogSlug(newestBlog.slug)}?id=${newestBlog.id}&read-mode=true`}
-      className="w-full cursor-pointer space-y-3"
-    >
+    <Link href={`/blog/${formatBlogSlug(newestBlog.slug)}`} className="w-full cursor-pointer space-y-3">
       <div className="relative aspect-[16/7] w-full overflow-hidden rounded-lg">
         <Image
           src={newestBlog.cover_image || PLACEHOLDER_URL}

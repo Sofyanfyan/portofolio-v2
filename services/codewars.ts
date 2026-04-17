@@ -1,14 +1,14 @@
 import axios from 'axios'
 
-import { reportError } from '@/common/helpers/error'
+import { CodewarsData } from '@/common/types/codewars'
 
 export async function getCodewarsServices() {
-  const USER_ID = process.env.NEXT_PUBLIC_USER_ID
-  const CODEWARS_API = `https://www.codewars.com/api/v1/users/${USER_ID}`
-  try {
-    const response = await axios.get(CODEWARS_API)
-    return response.data
-  } catch (error) {
-    reportError(error)
+  const username = process.env.CODEWARS_USERNAME || process.env.NEXT_PUBLIC_USER_ID
+
+  if (!username) {
+    return null
   }
+
+  const response = await axios.get(`https://www.codewars.com/api/v1/users/${username}`)
+  return response.data as CodewarsData
 }

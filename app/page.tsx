@@ -3,6 +3,7 @@ import { unstable_noStore as noStore } from 'next/cache'
 
 import Container from '@/components/elements/Container'
 import StructuredData from '@/components/elements/StructuredData'
+import { getLatestArticles } from '@/services/blog'
 import { getLearns, getPromotions, getServices } from '@/services/codebayu'
 import { Person, WithContext } from 'schema-dts'
 
@@ -32,15 +33,18 @@ function generateStructuredData(): WithContext<Person> {
 
 export default async function HomePage() {
   noStore()
-  const learns = await getLearns()
-  const services = await getServices()
-  const promotions = await getPromotions()
+  const [learns, services, promotions, articles] = await Promise.all([
+    getLearns(),
+    getServices(),
+    getPromotions(),
+    getLatestArticles()
+  ])
   const promotion = promotions.find((item: IAdsBanner) => item.showingOn.includes('/'))
   return (
     <>
       <StructuredData data={generateStructuredData()} />
       <Container data-aos="fade-left">
-        <Home learns={learns} services={services} promotion={promotion} />
+        <Home learns={learns} services={services} promotion={promotion} articles={articles} />
       </Container>
     </>
   )

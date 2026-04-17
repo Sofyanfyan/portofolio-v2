@@ -1,5 +1,4 @@
 import {
-  BiEditAlt as BlogIcon,
   BiPaperPlane as ContactIcon,
   BiCategoryAlt as DashboardIcon,
   BiHomeSmile as HomeIcon,
@@ -8,7 +7,7 @@ import {
   BiArchive as ProjectIcon
 } from 'react-icons/bi'
 import { BsDiscord as DiscordIcon, BsGithub as GithubIcon, BsLinkedin as LinkedinIcon } from 'react-icons/bs'
-import { LuTrello, LuWorkflow } from 'react-icons/lu'
+import { LuTrello } from 'react-icons/lu'
 import { PiChatTeardropDotsBold as ChatIcon } from 'react-icons/pi'
 import { RiNpmjsFill as NpmIcon } from 'react-icons/ri'
 
@@ -32,14 +31,6 @@ export const MENU_ITEMS: MenuItemProps[] = [
     eventName: 'Pages: About'
   },
   {
-    title: 'Blog',
-    href: '/blog?category=home',
-    icon: <BlogIcon />,
-    isShow: true,
-    isExternal: false,
-    eventName: 'Pages: Blog'
-  },
-  {
     title: 'Projects',
     href: '/projects',
     icon: <ProjectIcon />,
@@ -55,14 +46,6 @@ export const MENU_ITEMS: MenuItemProps[] = [
     isShow: false,
     isExternal: false,
     eventName: 'Pages: Learn'
-  },
-  {
-    title: 'Roadmap',
-    href: '/roadmap?tribe=frontend-developer',
-    icon: <LuWorkflow />,
-    isShow: true,
-    isExternal: false,
-    eventName: 'Pages: Roadmap'
   },
   {
     title: 'Task Board',
@@ -138,7 +121,7 @@ export const SOCIAL_MEDIA: SocialMedia[] = [
   {
     id: 'Discord',
     title: 'Chat with the community',
-    description: 'Join over 1,000+ others developers on The Code Bayu Discord.',
+    description: 'Join over 1,000+ others developers on The Achmad Sofyan Discord.',
     href: 'https://discord.gg/76UFeGdXy6',
     icon: <DiscordIcon className="text-xl md:text-3xl" />,
     classContainer:
@@ -151,27 +134,18 @@ export const SOCIAL_MEDIA: SocialMedia[] = [
 
 export const BLOG_LINK = [
   {
-    id: null,
     href: '?category=home',
     label: 'Home',
     value: 'home'
   },
   {
-    id: 24593,
     href: '?category=nextjs',
     label: 'Next.js',
     value: 'nextjs'
   },
   {
-    id: 24596,
     href: '?category=typescript',
     label: 'TypeScript',
     value: 'typescript'
-  },
-  {
-    id: null,
-    href: '/roadmap?tribe=frontend-developer',
-    label: 'Roadmap',
-    value: 'roadmap'
   }
 ]

@@ -21,6 +21,14 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'media2.dev.to'
+      },
+      {
+        protocol: 'https',
+        hostname: 'mci-onemore.my'
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.techinasia.com'
       }
     ]
   },

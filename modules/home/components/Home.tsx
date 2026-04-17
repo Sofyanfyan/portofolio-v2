@@ -1,26 +1,19 @@
 import Breakline from '@/components/elements/Breakline'
 
-import { IAdsBanner } from '@/common/types/ads'
-import { ILearn } from '@/common/types/learn'
 import { IServices } from '@/common/types/services'
 
 import Introduction from './Introduction'
-import LatestArticle from './LatestArticle'
 import ServicesList from './ServicesList'
 
 interface HomeProps {
-  learns: ILearn[]
   services: IServices[]
-  promotion?: IAdsBanner
 }
 
-export default function Home({ learns, services, promotion }: HomeProps) {
+export default function Home({ services }: HomeProps) {
   return (
     <>
       <Introduction />
-      <Breakline className="my-6 3xl:my-10" />
-      <LatestArticle learns={learns} promotion={promotion} />
-      <Breakline className="my-6 3xl:my-10" />
+      <Breakline className="my-20 3xl:my-10" />
       <ServicesList services={services} />
     </>
   )

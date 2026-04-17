@@ -15,8 +15,8 @@ export default function ServicesCard({ tag, title, description, id }: ServicesCa
   return (
     <Card className="relative border border-neutral-200 p-4 dark:border-neutral-700 md:p-6">
       <div className="mb-5 flex items-center justify-center px-6 py-4">
-        {id === 'clw0yxaqk0000ab3s7p118cw7' ? <WebIlustration /> : null}
-        {id === 'clw0yyejt0001ab3su66betrb' ? <MobileIlustration /> : null}
+        {id === 'aNRJkguyojwbiVcs7hwg' ? <WebIlustration /> : null}
+        {id === 'Vu7mugI4vmHkPPQPvxUw' ? <MobileIlustration /> : null}
         {id === 'clw0z042t0002ab3sormqhk3z' ? <AnalyticIlustration /> : null}
         {id === 'clw0z186t0003ab3smohmjtwr' ? <SeoIlustration /> : null}
       </div>

@@ -45,6 +45,7 @@ export default function ProfileHeader({ expandMenu, imageSize }: ProfileHeaderPr
             alt="profile"
             width={expandMenu ? 80 : imageSize * 0.9}
             height={expandMenu ? 80 : imageSize * 0.9}
+            priority
             rounded="rounded-full"
             className="lg:hover:scale-105"
           />
@@ -55,13 +56,14 @@ export default function ProfileHeader({ expandMenu, imageSize }: ProfileHeaderPr
         alt="profile"
         width={expandMenu ? 80 : imageSize * 0.9}
         height={expandMenu ? 80 : imageSize * 0.9}
+        priority
         rounded="rounded-full"
         className="lg:hidden lg:hover:scale-105"
       />
       <div className="mt-1 flex items-center gap-2">
         <Link href="/" passHref>
           <h2 className="font-sora flex-grow whitespace-nowrap text-lg font-medium lg:text-xl 3xl:text-2xl">
-            Bayu Setiawan
+            Achmad Sofyan
           </h2>
         </Link>
         <Tooltip title="Verified">
@@ -73,7 +75,7 @@ export default function ProfileHeader({ expandMenu, imageSize }: ProfileHeaderPr
         target="_blank"
         className="font-sora hidden text-sm text-neutral-600 transition-all duration-300 hover:text-neutral-700 dark:text-neutral-500 dark:hover:text-neutral-400 lg:flex 3xl:text-lg"
       >
-        @codebayu
+        @sofyanfyan
       </Link>
     </div>
   )

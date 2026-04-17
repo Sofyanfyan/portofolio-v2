@@ -1,16 +1,15 @@
 'use client'
 
-import { getDatabase, onValue, ref, remove, set } from 'firebase/database'
-import { User } from 'next-auth'
+import { serializeFirestoreDocument } from '@/services/firestore'
+import { addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query } from 'firebase/firestore'
 import { useEffect, useRef, useState } from 'react'
-import { v4 as uuid } from 'uuid'
 
-import { firebase } from '@/common/libs/firebase'
-import { IMessage, IRawMessages } from '@/common/types/messages'
+import { firestore } from '@/common/libs/firebase'
+import { IChatProfile, IMessage } from '@/common/types/messages'
 
 import { useNotif } from '@/hooks/useNotif'
 
-export default function useChat({ user }: { user: User }) {
+export default function useChat({ profile }: { profile: IChatProfile | null }) {
   const [messages, setMessages] = useState<IMessage[]>([])
   const [loading, setLoading] = useState(true)
   const [reply, setReply] = useState({ isReply: false, name: '' })
@@ -18,18 +17,15 @@ export default function useChat({ user }: { user: User }) {
   const chatListRef = useRef<HTMLDivElement | null>(null)
   const notif = useNotif()
 
-  const db = getDatabase(firebase)
-  const dbMessages = process.env.NEXT_PUBLIC_FIREBASE_DATABASE_CHAT
+  async function sendMessage(message: string) {
+    if (!profile) {
+      return notif('Please fill your profile first')
+    }
 
-  function sendMessage(message: string) {
-    const messageId = uuid()
-    const messageRef = ref(db, `${dbMessages}/${messageId}`)
-
-    set(messageRef, {
-      id: messageId,
-      name: user?.name,
-      email: user?.email,
-      image: user?.image,
+    await addDoc(collection(firestore, 'chat_messages'), {
+      name: profile.name,
+      email: profile.email,
+      image: profile.image || '',
       message,
       created_at: new Date().toISOString(),
       is_show: true,
@@ -38,16 +34,12 @@ export default function useChat({ user }: { user: User }) {
     })
   }
 
-  function deleteMessage(id: string) {
-    const messageRef = ref(db, `${dbMessages}/${id}`)
-
-    if (messageRef) {
-      remove(messageRef)
-    }
+  async function deleteMessage(id: string) {
+    await deleteDoc(doc(firestore, 'chat_messages', id))
   }
 
   function clickReply(name: string) {
-    if (!user) return notif('Please sign in to reply')
+    if (!profile) return notif('Please fill your profile to reply')
     setReply({ isReply: true, name })
   }
 
@@ -56,24 +48,17 @@ export default function useChat({ user }: { user: User }) {
   }
 
   useEffect(() => {
-    const messagesRef = ref(db, dbMessages)
-    onValue(messagesRef, snapshot => {
-      const data: IRawMessages = snapshot.val()
-
-      const transformMessages: IMessage[] = Object.entries(data)
-        .map(([id, value]) => ({
-          id,
-          ...value
-        }))
-        .sort((a, b) => {
-          const dateA = new Date(a.created_at)
-          const dateB = new Date(b.created_at)
-          return dateA.getTime() - dateB.getTime()
-        })
+    const messagesQuery = query(collection(firestore, 'chat_messages'), orderBy('created_at', 'asc'))
+    const unsubscribe = onSnapshot(messagesQuery, snapshot => {
+      const transformMessages = snapshot.docs
+        .map(item => serializeFirestoreDocument<IMessage>(item.id, item.data()))
+        .filter(message => message.is_show)
       setMessages(transformMessages)
       setLoading(false)
     })
-  }, [db, dbMessages])
+
+    return () => unsubscribe()
+  }, [])
 
   useEffect(() => {
     if (chatListRef.current && !hasScrolledUp) {

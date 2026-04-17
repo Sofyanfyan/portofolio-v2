@@ -9,12 +9,13 @@ import PageSpeed from './PageSpeed'
 
 interface DashboardProps {
   githubData: any
-  codewarsData: CodewarsData
+  codewarsData: CodewarsData | null
+  pageSpeedData: Record<string, unknown>
 }
-export default function Dashboard({ githubData, codewarsData }: DashboardProps) {
+export default function Dashboard({ githubData, codewarsData, pageSpeedData }: DashboardProps) {
   return (
     <section className="flex flex-col">
-      <PageSpeed />
+      <PageSpeed data={pageSpeedData} />
       <Contributions githubData={githubData} />
       <Breakline />
       <Codewars codewarsData={codewarsData} />

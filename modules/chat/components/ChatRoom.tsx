@@ -1,9 +1,10 @@
 'use client'
 
-import { User } from 'next-auth'
+import { useEffect, useState } from 'react'
 
 import { tourChatRoom } from '@/common/constant/drivers'
 import createDrivers from '@/common/libs/drivers'
+import { IChatProfile } from '@/common/types/messages'
 
 import useChat from '@/hooks/useChat'
 import useHasMounted from '@/hooks/useHasMounted'
@@ -12,16 +13,32 @@ import ChatAuth from './ChatAuth'
 import ChatItem from './ChatItem'
 import ChatItemSkeleton from './ChatItemSkeleton'
 
-interface ChatRoomProps {
-  user: User
-}
+const CHAT_PROFILE_STORAGE_KEY = 'codebayu-chat-profile'
 
-export default function ChatRoom({ user }: ChatRoomProps) {
+export default function ChatRoom() {
   const mounted = useHasMounted()
+  const [profile, setProfile] = useState<IChatProfile | null>(null)
   const { messages, loading, sendMessage, reply, cancleReply, deleteMessage, clickReply, chatListRef } = useChat({
-    user
+    profile
   })
   const { runDriver, isProductTour } = createDrivers({ steps: tourChatRoom, product: 'chat-room', timing: 2000 })
+
+  useEffect(() => {
+    const savedProfile = localStorage.getItem(CHAT_PROFILE_STORAGE_KEY)
+    if (savedProfile) {
+      setProfile(JSON.parse(savedProfile))
+    }
+  }, [])
+
+  function saveProfile(nextProfile: IChatProfile) {
+    localStorage.setItem(CHAT_PROFILE_STORAGE_KEY, JSON.stringify(nextProfile))
+    setProfile(nextProfile)
+  }
+
+  function clearProfile() {
+    localStorage.removeItem(CHAT_PROFILE_STORAGE_KEY)
+    setProfile(null)
+  }
 
   if (mounted && isProductTour) {
     runDriver()
@@ -40,14 +57,21 @@ export default function ChatRoom({ user }: ChatRoomProps) {
             <ChatItem
               key={message.id}
               {...message}
-              sessionEmail={String(user?.email)}
+              sessionEmail={String(profile?.email || '')}
               deleteMessage={deleteMessage}
               clickReply={clickReply}
             />
           ))
         )}
       </div>
-      <ChatAuth user={user} sendMessage={sendMessage} reply={reply} cancleReply={cancleReply} />
+      <ChatAuth
+        profile={profile}
+        saveProfile={saveProfile}
+        clearProfile={clearProfile}
+        sendMessage={sendMessage}
+        reply={reply}
+        cancleReply={cancleReply}
+      />
     </div>
   )
 }

@@ -15,12 +15,13 @@ export default function MeProfile() {
             alt="profile"
             width={80}
             height={80}
+            priority
             className="rounded-full transition-all duration-300 hover:scale-105"
           />
         </div>
       </div>
       <div className="mt-1 flex items-center gap-2 lg:mt-4">
-        <h2 className="font-sora flex-grow text-lg font-medium lg:text-xl">Bayu Setiawan</h2>
+        <h2 className="font-sora flex-grow text-lg font-medium lg:text-xl">Achmad Sofyan</h2>
         <Tooltip title="Verified">
           <VerifiedIcon size={18} className="text-blue-400" data-testid="verified-icon" />
         </Tooltip>

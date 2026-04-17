@@ -3,7 +3,7 @@ import { Metadata } from 'next'
 import BackButton from '@/components/elements/BackButton'
 import Container from '@/components/elements/Container'
 import ReaderPage from '@/components/elements/ReaderPage'
-import { getBlogDetail, getComments } from '@/services/blog'
+import { getComments, getLearnArticleDetail } from '@/services/blog'
 import { getBlogViews } from '@/services/view'
 
 import { METADATA } from '@/common/constant/metadata'
@@ -15,11 +15,10 @@ interface Params {
 
 interface LearnContentDetailPageProps {
   params: Params
-  searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export async function generateMetadata({ params, searchParams }: LearnContentDetailPageProps): Promise<Metadata> {
-  const data = await getBlogDetail({ params, searchParams })
+export async function generateMetadata({ params }: LearnContentDetailPageProps): Promise<Metadata> {
+  const data = await getLearnArticleDetail(params.slug, params.content)
   return {
     title: `${data.title} ${METADATA.exTitle}`,
     description: data.description,
@@ -38,10 +37,10 @@ export async function generateMetadata({ params, searchParams }: LearnContentDet
   }
 }
 
-export default async function LearnContentDetailPage({ params, searchParams }: LearnContentDetailPageProps) {
-  const content = await getBlogDetail({ params, searchParams })
-  const pageViewCount = await getBlogViews(searchParams.id as string)
-  const comments = await getComments(searchParams.id as string)
+export default async function LearnContentDetailPage({ params }: LearnContentDetailPageProps) {
+  const content = await getLearnArticleDetail(params.slug, params.content)
+  const pageViewCount = await getBlogViews(params.slug, params.content)
+  const comments = await getComments()
   return (
     <>
       <Container data-aos="fade-left">

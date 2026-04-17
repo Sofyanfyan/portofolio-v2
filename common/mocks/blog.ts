@@ -5,7 +5,7 @@ export const commentsMock = [
     created_at: '2023-08-25T23:09:11Z',
     body_html: '<p>Hi, kindly leave a like and comment if you got new insight! 🔥</p>\n\n',
     user: {
-      name: 'Bayu Setiawan',
+      name: 'Achmad Sofyan',
       username: 'codebayu',
       twitter_username: null,
       github_username: 'codebayu',
@@ -23,7 +23,7 @@ export const commentsMock = [
         created_at: '2023-08-25T23:09:11Z',
         body_html: '<p>Hi, kindly leave a like and comment if you got new insight! 🔥</p>\n\n',
         user: {
-          name: 'Bayu Setiawan',
+          name: 'Achmad Sofyan',
           username: 'codebayu',
           twitter_username: null,
           github_username: 'codebayu',

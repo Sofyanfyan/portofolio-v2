@@ -5,7 +5,7 @@ export const careersMock: ICareer[] = [
     position: 'Senior Frontend Engineer',
     company: 'CodeBayu',
     logo: '/images/codebayu.png',
-    location: 'Jakarta, Indonesia',
+    location: 'Surabaya, Indonesia',
     location_type: 'remote',
     type: 'full-time',
     start_date: new Date(),

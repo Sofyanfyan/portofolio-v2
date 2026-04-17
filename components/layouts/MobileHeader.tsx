@@ -38,11 +38,11 @@ export default function MobileHeader() {
       <div className="flex w-full items-center justify-between">
         <div className="flex space-x-2">
           <div className="z-10 h-max w-max rounded-full border-2 border-white shadow-md dark:border-neutral-800">
-            <Image src={PROFILE_URL} alt="profile" width={30} height={30} rounded="rounded-full" />
+            <Image src={PROFILE_URL} alt="profile" width={30} height={30} priority rounded="rounded-full" />
           </div>
           <div className="mt-1 flex items-center gap-2">
             <Link href="/" passHref>
-              <h2 className="font-sora flex-grow whitespace-nowrap text-lg font-medium lg:text-xl">Bayu Setiawan</h2>
+              <h2 className="font-sora flex-grow whitespace-nowrap text-lg font-medium lg:text-xl">Achmad Sofyan</h2>
             </Link>
             <Tooltip title="Verified">
               <VerifiedIcon size={18} className="text-blue-400" />

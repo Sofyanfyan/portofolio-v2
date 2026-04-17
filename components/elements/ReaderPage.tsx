@@ -56,12 +56,14 @@ export default function ReaderPage({ content, comments, pageViewCount }: ReaderP
         </div>
       )}
       <Breakline className="!my-10" />
-      <div className="mb-4 flex flex-col space-y-2">
-        <h3 className="text-lg font-medium">Comment on DEV Community:</h3>
-        <Link href={url} target="_blank" className="text-blue-600">
-          {url}
-        </Link>
-      </div>
+      {url && (
+        <div className="mb-4 flex flex-col space-y-2">
+          <h3 className="text-lg font-medium">Original Source:</h3>
+          <Link href={url} target="_blank" className="text-blue-600">
+            {url}
+          </Link>
+        </div>
+      )}
       <CommentList id={id} totalComments={comments_count} comments={comments} />
     </>
   )

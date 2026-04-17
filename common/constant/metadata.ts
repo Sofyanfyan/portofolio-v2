@@ -1,16 +1,16 @@
 export const METADATA = {
-  creator: 'Bayu Setiawan',
-  description: 'Personal website, portfolio, blog, software engineer roadmap, programming tips of Code Bayu',
-  keyword: 'codebayu, bayu setiawan, programming tips, belajar javascript, belajar typescript',
+  creator: 'Achmad Sofyan',
+  description: 'Personal website, portfolio, blog, and programming tips of Achmad Sofyan',
+  keyword: 'codebayu, Achmad Sofyan, programming tips, belajar javascript, belajar typescript',
   authors: {
-    name: 'Bayu Setiawan',
+    name: 'Achmad Sofyan',
     url: process.env.DOMAIN
   },
   openGraph: {
     url: process.env.DOMAIN,
-    siteName: 'Code Bayu',
+    siteName: 'Achmad Sofyan',
     locale: 'id-ID'
   },
-  exTitle: '| Code Bayu',
+  exTitle: '| Achmad Sofyan',
   profile: 'https://res.cloudinary.com/codebayu/image/upload/f_auto,q_auto/v1/codebayu/logo'
 }

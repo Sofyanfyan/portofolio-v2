@@ -1,49 +1,96 @@
-import Image from 'next/image'
-
-import { User } from 'next-auth'
-import { signOut } from 'next-auth/react'
+import InputField from '@/components/elements/InputField'
+import { useForm } from 'react-hook-form'
 import { FaSignOutAlt as SignOutIcon } from 'react-icons/fa'
 
-import { IReply } from '@/common/types/messages'
+import { IChatProfile, IReply } from '@/common/types/messages'
 
 import ChatInput from './ChatInput'
-import SignInGoogleButton from './SignInGoogleButton'
+
+interface ChatProfileForm {
+  name: string
+  email: string
+}
 
 interface ChatAuthProps {
-  user: User
+  profile: IChatProfile | null
+  saveProfile: (profile: IChatProfile) => void
+  clearProfile: () => void
   sendMessage: (message: string) => void
   reply: IReply
   cancleReply: () => void
 }
-export default function ChatAuth({ user, reply, sendMessage, cancleReply }: ChatAuthProps) {
+function getInitials(name: string) {
+  return name
+    .split(' ')
+    .slice(0, 2)
+    .map(item => item.charAt(0).toUpperCase())
+    .join('')
+}
+
+export default function ChatAuth({
+  profile,
+  saveProfile,
+  clearProfile,
+  reply,
+  sendMessage,
+  cancleReply
+}: ChatAuthProps) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<ChatProfileForm>({
+    defaultValues: {
+      name: profile?.name || '',
+      email: profile?.email || ''
+    }
+  })
+
   return (
     <>
-      {user ? (
+      {profile ? (
         <div>
           <ChatInput sendMessage={sendMessage} reply={reply} cancleReply={cancleReply} />
           <div className="mt-6 flex items-center justify-between text-sm">
             <div className=" flex items-center space-x-2 text-neutral-500">
-              <Image src={String(user.image)} alt={String(user.name)} width={35} height={35} className="rounded-full" />
+              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-neutral-200 text-xs font-semibold text-neutral-700 dark:bg-neutral-800 dark:text-neutral-200">
+                {getInitials(profile.name)}
+              </div>
               <div className="flex flex-col">
-                <span>{user.name}</span>
-                <span className="text-xs font-thin">{user.email}</span>
+                <span>{profile.name}</span>
+                <span className="text-xs font-thin">{profile.email}</span>
               </div>
             </div>
             <button
-              onClick={() => signOut()}
+              onClick={clearProfile}
               className="flex items-center space-x-2 text-xs text-red-500"
-              aria-label="Sign out"
+              aria-label="Reset profile"
             >
-              <span>Sign out</span>
+              <span>Reset</span>
               <SignOutIcon size={14} />
             </button>
           </div>
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center space-y-2">
-          <p className="text-sm text-neutral-600 dark:text-neutral-200">Please sign in to chat</p>
-          <SignInGoogleButton />
-        </div>
+        <form onSubmit={handleSubmit(saveProfile)} className="space-y-3 rounded-xl border p-4 dark:border-neutral-800">
+          <p className="text-sm text-neutral-600 dark:text-neutral-200">Fill in your profile to join the chat</p>
+          <InputField register={register} name="name" error={errors} rule={{ required: true }} />
+          <InputField
+            register={register}
+            name="email"
+            error={errors}
+            rule={{
+              required: true,
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: 'email is invalid'
+              }
+            }}
+          />
+          <button className="rounded-lg bg-neutral-700 px-4 py-2 text-sm text-white dark:bg-neutral-200 dark:text-black">
+            Save Profile
+          </button>
+        </form>
       )}
     </>
   )

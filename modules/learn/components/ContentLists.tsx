@@ -1,12 +1,6 @@
-'use client'
-
 import EmptyState from '@/components/elements/EmptyState'
-import { fetcher } from '@/services/fetcher'
 import { motion } from 'framer-motion'
-import { useMemo } from 'react'
-import useSWR from 'swr'
 
-import { DEVTO_BLOG_API } from '@/common/constant'
 import { BlogItem } from '@/common/types/blog'
 import { ILearn } from '@/common/types/learn'
 
@@ -14,36 +8,16 @@ import LearnSubContentItem from './LearnSubContentItem'
 
 interface ContentListsProps {
   content: ILearn
+  articles: BlogItem[]
 }
-export default function ContentLists({ content }: ContentListsProps) {
-  const { data, isLoading } = useSWR(DEVTO_BLOG_API, fetcher, {
-    revalidateOnMount: true
+export default function ContentLists({ content, articles }: ContentListsProps) {
+  const learns = [...articles].sort((firstItem, secondItem) => {
+    const firstDate = new Date(firstItem.created_at).getTime()
+    const secondDate = new Date(secondItem.created_at).getTime()
+    return firstDate - secondDate
   })
 
-  const learns: BlogItem[] = useMemo(() => {
-    if (!data) return []
-    const filteredLearns = data.filter((blog: BlogItem) => {
-      return `${blog.collection_id}` === content.id
-    })
-    filteredLearns.sort((a: BlogItem, b: BlogItem) => {
-      const dateA = new Date(a.created_at)
-      const dateB = new Date(b.created_at)
-      return dateA.getTime() - dateB.getTime()
-    })
-    return filteredLearns
-  }, [data, content.id])
-
-  if (isLoading) {
-    return (
-      <div className="flex flex-col gap-3">
-        {[1, 2, 3].map(item => (
-          <div key={item} className="h-14 animate-pulse rounded-xl bg-neutral-300 dark:bg-neutral-700" />
-        ))}
-      </div>
-    )
-  }
-
-  if (learns.length === 0 && !isLoading) {
+  if (learns.length === 0) {
     return <EmptyState message="No Data" />
   }
 
@@ -63,7 +37,7 @@ export default function ContentLists({ content }: ContentListsProps) {
             title={item.title}
             language={content.language}
             difficulty={content.level}
-            postId={`${item.id}`}
+            postId={item.id}
           />
         </motion.div>
       ))}

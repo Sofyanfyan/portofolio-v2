@@ -32,6 +32,11 @@ export default function ChatItem({
   const [onHover, setOnHover] = useState(false)
   const authorEmail = process.env.NEXT_PUBLIC_AUTHOR_EMAIL as string
   const time = formatDistanceToNow(new Date(created_at), { addSuffix: true })
+  const initials = name
+    .split(' ')
+    .slice(0, 2)
+    .map(item => item.charAt(0).toUpperCase())
+    .join('')
 
   return (
     <motion.div
@@ -40,7 +45,13 @@ export default function ChatItem({
       animate={{ opacity: 1, y: 0 }}
       className="flex w-full items-end space-x-2"
     >
-      <Image src={image} alt={name} width={40} height={40} className="mb-6 rounded-full" />
+      {image ? (
+        <Image src={image} alt={name} width={40} height={40} className="mb-6 rounded-full" />
+      ) : (
+        <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-full bg-neutral-200 text-xs font-semibold text-neutral-700 dark:bg-neutral-800 dark:text-neutral-200">
+          {initials}
+        </div>
+      )}
       <div className="flex w-full flex-col space-y-[2px]">
         <div
           className="flex w-full max-w-[90%] items-end space-x-2"
@@ -84,7 +95,7 @@ export default function ChatItem({
           <span className="text-xs ">{time}</span>
         </div>
       </div>
-      {authorEmail === sessionEmail && (
+      {sessionEmail === email && (
         <button onClick={() => deleteMessage(id)} aria-label="Delete">
           <DeleteIcon size={15} className="text-red-500" />
         </button>
