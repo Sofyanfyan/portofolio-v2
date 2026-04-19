@@ -46,6 +46,11 @@ Setiap dokumen:
   "logo": "/career/example-inc",
   "location": "Jakarta",
   "location_type": "Hybrid",
+  "tasks": [
+    "Build reusable frontend components for internal and public-facing products.",
+    "Collaborate with designers and backend engineers to ship new features.",
+    "Maintain performance, accessibility, and responsive behavior across pages."
+  ],
   "type": "Full-time",
   "start_date": "2024-01-01T00:00:00.000Z",
   "end_date": null,
@@ -53,6 +58,31 @@ Setiap dokumen:
   "slug": "example-inc-frontend-developer"
 }
 ```
+
+Catatan:
+
+- `tasks` bersifat opsional, bertipe array of string.
+- Jika diisi, nilainya akan ditampilkan sebagai unordered list di halaman detail experience.
+
+### `educations`
+
+Setiap dokumen:
+
+```json
+{
+  "name": "Institut Teknologi Sepuluh Nopember",
+  "logo": "/education/its",
+  "score": "3.85 / 4.00",
+  "start_date": "2019-08-01T00:00:00.000Z",
+  "end_date": "2023-07-01T00:00:00.000Z",
+  "title": "Bachelor of Informatics"
+}
+```
+
+Catatan:
+
+- `logo` dipakai di card education. Boleh berupa path asset/CDN string seperti koleksi `careers`.
+- `end_date` boleh `null` jika pendidikan masih berlangsung, dan UI akan menampilkan `Present`.
 
 ### `projects`
 

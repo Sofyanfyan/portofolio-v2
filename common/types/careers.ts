@@ -5,6 +5,7 @@ export interface ICareer {
   logo: string
   location: string
   location_type: string
+  tasks?: string[]
   type: string
   start_date: string | Date
   end_date: string | Date | null
@@ -19,6 +20,7 @@ export type ICareerCMS = {
   logo: string
   location: string
   locationType: string
+  tasks?: string[]
   type: string
   startDate: string
   endDate: string | null

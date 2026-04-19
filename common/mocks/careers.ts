@@ -7,6 +7,7 @@ export const careersMock: ICareer[] = [
     logo: '/images/codebayu.png',
     location: 'Surabaya, Indonesia',
     location_type: 'remote',
+    tasks: ['Build and maintain frontend features', 'Collaborate with product and design teams'],
     type: 'full-time',
     start_date: new Date(),
     end_date: null,

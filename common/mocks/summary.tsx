@@ -1,9 +1,18 @@
+const paragraphs = [
+  "Hey there! I'm Achmad Sofyan, a fullstack software engineer who's super passionate about building elegant and efficient solutions across both frontend and backend. With my experience in PHP, JavaScript, and TypeScript, I love developing scalable web applications that are not only functional but also fun to use.",
+  "Since diving into web development, I've been excited to explore new frameworks and technologies to keep learning and growing. Whether it's designing a solid backend architecture or crafting interactive and smooth user interfaces, I enjoy turning complex problems into clean, maintainable solutions.",
+  "Currently, I'm based in Surabaya, Indonesia ID",
+  "I'm a quick learner and thrive in fast-paced environments where things are always changing. I'm also all about collaboration and believe in listening to every team member's input.",
+  "This blog is my place to share insights, experiences, and cool discoveries along my journey as a fullstack engineer. Come along and let's dive into the world of tech, where every line of code can make an impact!",
+  "Thanks for stopping by, and I'm excited to share this journey with you!",
+]
+
 export const summaryMock = {
-  paragraphOne:
-    'Hi! I am Achmad Sofyan, a seasoned software engineer with a deep passion for creating elegant and efficient solutions through code. With a strong foundation in JavaScript and TypeScript, along with a comprehensive understanding of various frontend libraries and frameworks, I heve been navigating the ever-evolving landscape of web development with enthusiasm and dedication. Currently, reside in Surabaya, Indonesia 🇮🇩.',
-  paragraphTwo:
-    'As a fast learner and adaptive thinker, I thrive in dynamic environments where innovation is the driving force. My collaborative nature allows me to seamlessly integrate with teams, contributing not only my technical prowess but also a humble attitude that values every members input.',
-  paragraphThree:
-    'This blog is my platform to share insights, experiences, and discoveries from my journey as a software engineer. Join me as we delve into the ever-exciting realm of technology, where each line of code has the potential to shape the digital landscape in remarkable ways.',
-  paragraphFour: 'Thank you for visiting, and I look forward to embarking on this knowledge-sharing adventure'
+  paragraphOne: paragraphs[0],
+  paragraphTwo: paragraphs[1],
+  paragraphThree: paragraphs[2],
+  paragraphFour: paragraphs[3],
+  paragraphFive: paragraphs[4],
+  paragraphSix: paragraphs[5],
+  paragraphs,
 }

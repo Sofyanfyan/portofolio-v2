@@ -1,3 +1,3 @@
-yarn lint:fix
-yarn format
-yarn coverage
+./node_modules/.bin/eslint . --fix
+./node_modules/.bin/prettier --write .
+./node_modules/.bin/vitest --coverage --run

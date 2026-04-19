@@ -8,12 +8,10 @@ import loadMdxFiles from '@/common/libs/mdx'
 import { ICareer } from '@/common/types/careers'
 
 export default function ExperienceDetail(props: ICareer) {
-  const { logo, company, position, location, location_type, start_date, end_date, slug } = props
+  const { logo, company, position, location, location_type, tasks, start_date, end_date, slug } = props
 
   const startDate = new Date(start_date)
   const endDate = end_date ? new Date(end_date) : new Date()
-
-  console.log(slug)
 
   const contents = loadMdxFiles(slug, 'experience')
   const content = contents.find(item => item.slug === slug)?.content
@@ -35,6 +33,16 @@ export default function ExperienceDetail(props: ICareer) {
         from {format(startDate, 'MMM yyyy')} to {end_date ? format(endDate, 'MMM yyyy') : 'Present'} in a dynamic{' '}
         {location_type} setting.
       </p>
+      {tasks && tasks.length > 0 && (
+        <div className="space-y-3">
+          <h3 className="text-lg font-semibold">Key Tasks</h3>
+          <ul className="list-disc space-y-2 pl-5 text-neutral-700 marker:text-neutral-500 dark:text-neutral-300 dark:marker:text-neutral-400">
+            {tasks.map(task => (
+              <li key={task}>{task}</li>
+            ))}
+          </ul>
+        </div>
+      )}
       {content && <MDXComponent>{content}</MDXComponent>}
     </div>
   )

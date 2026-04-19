@@ -3,7 +3,7 @@ import { Metadata } from 'next'
 import Container from '@/components/elements/Container'
 import PageHeading from '@/components/elements/PageHeading'
 import StructuredData from '@/components/elements/StructuredData'
-import { getCareers } from '@/services/codebayu'
+import { getCareers, getEducations } from '@/services/codebayu'
 import { Person, WithContext } from 'schema-dts'
 
 import { METADATA } from '@/common/constant/metadata'
@@ -34,13 +34,13 @@ const PAGE_TITLE = 'About'
 const PAGE_DESCRIPTION = 'A short story of me'
 
 export default async function AboutPage() {
-  const careers = await getCareers()
+  const [careers, educations] = await Promise.all([getCareers(), getEducations()])
   return (
     <>
       <StructuredData data={generateStructuredData()} />
       <Container data-aos="fade-left">
         <PageHeading title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
-        <About careers={careers} />
+        <About careers={careers} educations={educations} />
       </Container>
     </>
   )

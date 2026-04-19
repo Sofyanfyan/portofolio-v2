@@ -1,6 +1,7 @@
 import { ICodeBayuData } from '@/common/types'
 import { IAdsBanner } from '@/common/types/ads'
 import { ICareer } from '@/common/types/careers'
+import { IEducation } from '@/common/types/education'
 import { ILearn } from '@/common/types/learn'
 import { IProjectItem } from '@/common/types/projects'
 import { IServices } from '@/common/types/services'
@@ -50,6 +51,11 @@ export async function getServices(): Promise<IServices[]> {
 export async function getCareers(): Promise<ICareer[]> {
   const careers = await getCollectionDocuments<ICareer>('careers')
   return sortByDate(careers, 'start_date', 'desc')
+}
+
+export async function getEducations(): Promise<IEducation[]> {
+  const educations = await getCollectionDocuments<IEducation>('educations')
+  return sortByDate(educations, 'start_date', 'desc')
 }
 
 export async function getProjects(): Promise<IProjectItem[]> {

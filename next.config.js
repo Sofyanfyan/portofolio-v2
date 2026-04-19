@@ -29,7 +29,23 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'cdn.techinasia.com'
-      }
+      },
+      {
+        protocol: 'https',
+        hostname: 'media.licdn.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.glints.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'katamata.wordpress.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'prima-ptki.kemenag.go.id'
+      },
     ]
   },
   env: {

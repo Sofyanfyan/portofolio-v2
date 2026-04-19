@@ -14,19 +14,9 @@ describe('Summary Component', () => {
     expect(screen.getByTestId('summary')).toBeTruthy()
   })
 
-  it('Should render paragraph 1', () => {
-    expect(screen.getAllByText(summaryMock.paragraphOne)[0]).toBeTruthy()
-  })
-
-  it('Should render paragraph 2', () => {
-    expect(screen.getAllByText(summaryMock.paragraphTwo)[0]).toBeTruthy()
-  })
-
-  it('Should render paragraph 3', () => {
-    expect(screen.getAllByText(summaryMock.paragraphThree)[0]).toBeTruthy()
-  })
-
-  it('Should render paragraph 4', () => {
-    expect(screen.getAllByText(summaryMock.paragraphFour)[0]).toBeTruthy()
+  it('Should render all summary paragraphs', () => {
+    summaryMock.paragraphs.forEach(paragraph => {
+      expect(screen.getAllByText(paragraph)[0]).toBeTruthy()
+    })
   })
 })
