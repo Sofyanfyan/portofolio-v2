@@ -46,6 +46,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'prima-ptki.kemenag.go.id'
       },
+      {
+        protocol: 'https',
+        hostname: 'upload.wikimedia.org'
+      },
     ]
   },
   env: {

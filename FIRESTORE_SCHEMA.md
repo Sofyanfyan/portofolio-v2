@@ -84,6 +84,25 @@ Catatan:
 - `logo` dipakai di card education. Boleh berupa path asset/CDN string seperti koleksi `careers`.
 - `end_date` boleh `null` jika pendidikan masih berlangsung, dan UI akan menampilkan `Present`.
 
+### `certificates`
+
+Setiap dokumen:
+
+```json
+{
+  "from": "Dicoding Indonesia",
+  "link": "https://www.dicoding.com/certificates/EXAMPLE",
+  "logo": "/certificate/dicoding",
+  "name": "Belajar Fundamental Front-End Web Development"
+}
+```
+
+Catatan:
+
+- `from` dipakai untuk nama penerbit atau platform sertifikat.
+- `link` dipakai oleh tombol di halaman about dan akan dibuka di tab baru.
+- `logo` mengikuti pola asset/CDN string yang sama seperti koleksi `careers` dan `educations`.
+
 ### `projects`
 
 Setiap dokumen:
