@@ -97,7 +97,8 @@ export default function CareerCard({
           </div>
           <div className="flex flex-col items-start md:text-[13px]">
             <div className="flex gap-1">
-              <span>{format(startDate, 'MMM yyyy')}</span> - <span>{end_date ? format(endDate, 'MMM yyyy') : 'Present'}</span>
+              <span>{format(startDate, 'MMM yyyy')}</span> -{' '}
+              <span>{end_date ? format(endDate, 'MMM yyyy') : 'Present'}</span>
             </div>
             <span className="text-neutral-500 dark:text-neutral-500">~ {durationText}</span>
           </div>
