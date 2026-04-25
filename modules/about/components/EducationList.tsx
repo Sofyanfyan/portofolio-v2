@@ -29,7 +29,9 @@ export default function EducationList({ educations }: { educations: IEducation[]
           <div className="relative space-y-2">
             <p className="text-base font-semibold text-neutral-800 dark:text-neutral-200">Education section is ready</p>
             <p className="max-w-2xl text-sm leading-6 text-neutral-600 dark:text-neutral-400">
-              Add documents to the <code>educations</code> Firestore collection using the fields <code>name</code>, <code>logo</code>, <code>score</code>, <code>start_date</code>, <code>end_date</code>, and <code>title</code>, and they will automatically appear here in a polished card layout.
+              Add documents to the <code>educations</code> Firestore collection using the fields <code>name</code>,{' '}
+              <code>logo</code>, <code>score</code>, <code>start_date</code>, <code>end_date</code>, and{' '}
+              <code>title</code>, and they will automatically appear here in a polished card layout.
             </p>
           </div>
         </div>

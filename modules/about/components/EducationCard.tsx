@@ -1,8 +1,7 @@
-import { format } from 'date-fns'
-import { HiOutlineAcademicCap, HiOutlineCalendar } from 'react-icons/hi'
-
 import { Card } from '@/components/elements/Card'
 import Image from '@/components/elements/Image'
+import { format } from 'date-fns'
+import { HiOutlineAcademicCap, HiOutlineCalendar } from 'react-icons/hi'
 
 import { getCloudinaryUrl } from '@/common/libs/cloudinary'
 import { IEducation } from '@/common/types/education'
@@ -17,7 +16,13 @@ export default function EducationCard({ name, logo, score, start_date, end_date,
         <div className="flex items-center rounded-r-full border border-l-0 border-neutral-300 bg-white shadow-sm dark:border-neutral-700 dark:bg-neutral-950">
           <div className="flex h-[55px] w-[55px] items-center justify-center">
             {logo ? (
-              <Image src={getCloudinaryUrl(logo)} width={55} height={55} alt={name} className="relative z-10 object-contain" />
+              <Image
+                src={getCloudinaryUrl(logo)}
+                width={55}
+                height={55}
+                alt={name}
+                className="relative z-10 object-contain"
+              />
             ) : (
               <HiOutlineAcademicCap className="text-[28px] text-neutral-500 dark:text-neutral-300" />
             )}

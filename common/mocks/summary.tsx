@@ -4,7 +4,7 @@ const paragraphs = [
   "Currently, I'm based in Surabaya, Indonesia ID",
   "I'm a quick learner and thrive in fast-paced environments where things are always changing. I'm also all about collaboration and believe in listening to every team member's input.",
   "This blog is my place to share insights, experiences, and cool discoveries along my journey as a fullstack engineer. Come along and let's dive into the world of tech, where every line of code can make an impact!",
-  "Thanks for stopping by, and I'm excited to share this journey with you!",
+  "Thanks for stopping by, and I'm excited to share this journey with you!"
 ]
 
 export const summaryMock = {
@@ -14,5 +14,5 @@ export const summaryMock = {
   paragraphFour: paragraphs[3],
   paragraphFive: paragraphs[4],
   paragraphSix: paragraphs[5],
-  paragraphs,
+  paragraphs
 }
