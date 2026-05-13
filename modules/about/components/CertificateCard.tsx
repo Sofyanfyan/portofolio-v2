@@ -1,11 +1,10 @@
 import Link from 'next/link'
 
-import { BsPatchCheck as CertificateIcon } from 'react-icons/bs'
-import { FiExternalLink } from 'react-icons/fi'
-
 import { Card } from '@/components/elements/Card'
 import Image from '@/components/elements/Image'
 import { Button } from '@/components/ui/button'
+import { BsPatchCheck as CertificateIcon } from 'react-icons/bs'
+import { FiExternalLink } from 'react-icons/fi'
 
 import { getCloudinaryUrl } from '@/common/libs/cloudinary'
 import { ICertificate } from '@/common/types/certificates'

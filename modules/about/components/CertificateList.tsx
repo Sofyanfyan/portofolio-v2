@@ -25,7 +25,10 @@ export default function CertificateList({ certificates }: { certificates: ICerti
       {sortedCertificates.length > 0 ? (
         <div className="grid gap-5 md:grid-cols-2">
           {sortedCertificates.map((certificate, index) => (
-            <CertificateCard key={certificate.id ?? `${certificate.name}-${certificate.from}-${index}`} {...certificate} />
+            <CertificateCard
+              key={certificate.id ?? `${certificate.name}-${certificate.from}-${index}`}
+              {...certificate}
+            />
           ))}
         </div>
       ) : (
