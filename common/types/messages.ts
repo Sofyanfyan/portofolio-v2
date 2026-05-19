@@ -1,5 +1,6 @@
 export interface IMessage {
   id: string
+  uid?: string
   name: string
   email: string
   message: string
@@ -11,6 +12,7 @@ export interface IMessage {
 }
 
 export interface IChatProfile {
+  uid: string
   name: string
   email: string
   image?: string

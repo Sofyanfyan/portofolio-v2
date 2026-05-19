@@ -5,7 +5,7 @@ import { IServices } from './services'
 
 export type IBadgeVariant = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info'
 
-export interface ICodeBayuData {
+export interface IcodesofyanData {
   careers: ICareer[]
   projects: IProjectItem[]
   learns: ILearn[]

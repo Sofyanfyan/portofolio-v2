@@ -167,6 +167,7 @@ Setiap dokumen:
 
 ```json
 {
+  "uid": "firebase-auth-user-id",
   "name": "Bayu",
   "email": "bayu@example.com",
   "image": "",

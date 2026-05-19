@@ -3,15 +3,24 @@
 import NextImage, { ImageProps as NextImageProps } from 'next/image'
 
 import clsx from 'clsx'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+
+import { PLACEHOLDER_URL } from '@/common/constant'
 
 type ImageProps = {
+  fallbackSrc?: NextImageProps['src']
   rounded?: string
 } & NextImageProps
 
 const Image = (props: ImageProps) => {
-  const { alt, src, className, rounded, priority, ...rest } = props
+  const { alt, src, className, fallbackSrc = PLACEHOLDER_URL, onError, onLoad, rounded, priority, ...rest } = props
+  const [imageSrc, setImageSrc] = useState(src || fallbackSrc)
   const [isLoading, setLoading] = useState(true)
+
+  useEffect(() => {
+    setImageSrc(src || fallbackSrc)
+    setLoading(true)
+  }, [fallbackSrc, src])
 
   return (
     <div className={clsx('overflow-hidden', isLoading ? 'animate-pulse' : '', rounded)}>
@@ -23,12 +32,20 @@ const Image = (props: ImageProps) => {
           rounded,
           className
         )}
-        src={src}
+        src={imageSrc}
         alt={alt}
         priority={priority}
         loading={priority ? 'eager' : 'lazy'}
         quality={100}
-        onLoad={() => setLoading(false)}
+        onError={event => {
+          onError?.(event)
+          setLoading(false)
+          if (imageSrc !== fallbackSrc) setImageSrc(fallbackSrc)
+        }}
+        onLoad={event => {
+          onLoad?.(event)
+          setLoading(false)
+        }}
         {...rest}
       />
     </div>

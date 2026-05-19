@@ -3,7 +3,7 @@ import { Metadata } from 'next'
 import Container from '@/components/elements/Container'
 import PageHeading from '@/components/elements/PageHeading'
 import StructuredData from '@/components/elements/StructuredData'
-import { getCareers, getCertificates, getEducations } from '@/services/codebayu'
+import { getCareers, getCertificates, getEducations } from '@/services/codesofyan'
 import { Person, WithContext } from 'schema-dts'
 
 import { METADATA } from '@/common/constant/metadata'

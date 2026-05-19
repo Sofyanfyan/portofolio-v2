@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 
 import BackButton from '@/components/elements/BackButton'
 import Container from '@/components/elements/Container'
-import { getCareers } from '@/services/codebayu'
+import { getCareers } from '@/services/codesofyan'
 
 import { METADATA } from '@/common/constant/metadata'
 import { ICareer } from '@/common/types/careers'
@@ -12,7 +12,7 @@ import ExperienceDetail from '@/modules/experience'
 export const metadata: Metadata = {
   title: `Experience ${METADATA.exTitle}`,
   description: 'My proffesional carrer journey in detail as software development',
-  keywords: 'blog Achmad Sofyan, codebayu',
+  keywords: 'blog Achmad Sofyan, codesofyan',
   alternates: {
     canonical: `${process.env.DOMAIN}/experience`
   }

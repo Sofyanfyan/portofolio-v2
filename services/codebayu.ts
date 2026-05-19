@@ -1,4 +1,4 @@
-import { ICodeBayuData } from '@/common/types'
+import { IcodesofyanData } from '@/common/types'
 import { IAdsBanner } from '@/common/types/ads'
 import { ICareer } from '@/common/types/careers'
 import { ICertificate } from '@/common/types/certificates'
@@ -18,7 +18,7 @@ function sortByDate<T>(items: T[], key: keyof T, direction: 'asc' | 'desc' = 'as
   })
 }
 
-export async function getCodeBayuData(): Promise<ICodeBayuData> {
+export async function getcodesofyanData(): Promise<IcodesofyanData> {
   const [careers, projects, learns, services] = await Promise.all([
     getCareers(),
     getProjects(),

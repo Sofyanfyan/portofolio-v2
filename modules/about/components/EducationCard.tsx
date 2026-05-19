@@ -9,20 +9,15 @@ import { IEducation } from '@/common/types/education'
 export default function EducationCard({ name, logo, score, start_date, end_date, title }: IEducation) {
   const startDate = new Date(start_date)
   const endDate = end_date ? new Date(end_date) : null
+  const logoSrc = getCloudinaryUrl(logo)
 
   return (
     <Card className="flex items-start gap-5 overflow-hidden rounded-l-sm rounded-r-xl border border-l-0 border-neutral-300 bg-white py-4 !shadow-none transition-all duration-300 dark:border-neutral-700 dark:bg-neutral-950">
       <div className="relative my-1 h-max">
         <div className="flex items-center rounded-r-full border border-l-0 border-neutral-300 bg-white shadow-sm dark:border-neutral-700 dark:bg-neutral-950">
           <div className="flex h-[55px] w-[55px] items-center justify-center">
-            {logo ? (
-              <Image
-                src={getCloudinaryUrl(logo)}
-                width={55}
-                height={55}
-                alt={name}
-                className="relative z-10 object-contain"
-              />
+            {logoSrc ? (
+              <Image src={logoSrc} width={55} height={55} alt={name} className="relative z-10 object-contain" />
             ) : (
               <HiOutlineAcademicCap className="text-[28px] text-neutral-500 dark:text-neutral-300" />
             )}

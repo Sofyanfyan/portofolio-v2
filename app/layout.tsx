@@ -10,10 +10,10 @@ import ThemeProviderContext from '../stores/theme'
 import './globals.css'
 
 // export const metadata: Metadata = {
-//   applicationName: 'codebayu',
+//   applicationName: 'codesofyan',
 //   manifest: '/manifest.json',
 //   appleWebApp: {
-//     title: 'codebayu',
+//     title: 'codesofyan',
 //     capable: true,
 //     statusBarStyle: 'default'
 //   },

@@ -1,7 +1,7 @@
-import Image from 'next/image'
-
+import Image from '@/components/elements/Image'
 import MDXComponent from '@/components/elements/MDXComponent'
 import { format } from 'date-fns'
+import { BsBuildings as CompanyIcon } from 'react-icons/bs'
 
 import { getCloudinaryUrl } from '@/common/libs/cloudinary'
 import loadMdxFiles from '@/common/libs/mdx'
@@ -15,6 +15,7 @@ export default function ExperienceDetail(props: ICareer) {
 
   const contents = loadMdxFiles(slug, 'experience')
   const content = contents.find(item => item.slug === slug)?.content
+  const logoSrc = getCloudinaryUrl(logo)
 
   return (
     <div className="space-y-8">
@@ -26,7 +27,11 @@ export default function ExperienceDetail(props: ICareer) {
             <span>{end_date ? format(endDate, 'MMM yyyy') : 'Present'}</span>
           </div>
         </div>
-        <Image src={getCloudinaryUrl(logo)} alt={company} width={60} height={60} />
+        {logoSrc ? (
+          <Image src={logoSrc} alt={company} width={60} height={60} />
+        ) : (
+          <CompanyIcon className="text-[32px] text-neutral-500 dark:text-neutral-300" />
+        )}
       </div>
       <p className="font-sans text-neutral-700 dark:text-neutral-300">
         At {company}, I proudly served as <strong>{position}</strong> based in {location}, contributing my expertise

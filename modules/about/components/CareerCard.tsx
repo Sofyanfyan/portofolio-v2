@@ -59,6 +59,8 @@ export default function CareerCard({
   const mounted = useHasMounted()
   if (!mounted) return null
 
+  const logoSrc = getCloudinaryUrl(logo)
+
   return (
     <Card
       onClick={handleCardClick}
@@ -71,8 +73,8 @@ export default function CareerCard({
             resolvedTheme === 'light' ? 'inverted-image-left' : 'inverted-image-left-dark'
           )}
         >
-          {logo ? (
-            <Image src={getCloudinaryUrl(logo)} width={55} height={55} alt={company} className="relative z-10" />
+          {logoSrc ? (
+            <Image src={logoSrc} width={55} height={55} alt={company} className="relative z-10" />
           ) : (
             <CompanyIcon size={30} />
           )}

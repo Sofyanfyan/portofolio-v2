@@ -86,7 +86,7 @@ export const SOCIAL_MEDIA: SocialMedia[] = [
     id: 'GitHub',
     title: 'Explore the code',
     description: 'Explore the source code for all my projects on GitHub.',
-    href: 'https://github.com/codebayu',
+    href: 'https://github.com/codesofyan',
     icon: <GithubIcon className="text-xl md:text-3xl" />,
     classContainer:
       'border-slate-300 from-slate-100 to-slate-200 dark:border-slate-600 dark:from-slate-900 dark:to-slate-950',
