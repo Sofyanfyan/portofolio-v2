@@ -2,7 +2,7 @@
 
 import Container from '@/components/elements/Container'
 import PageHeading from '@/components/elements/PageHeading'
-import { useHydrationZustand } from '@codesofyan/use-hydration-zustand'
+import { useHydrationZustand } from '@codebayu/use-hydration-zustand'
 import { DragDropContext, DropResult } from '@hello-pangea/dnd'
 
 import { tourTaskBoard } from '@/common/constant/drivers'
@@ -71,7 +71,7 @@ export default function TaskBoard() {
     <DragDropContext onDragEnd={result => onDragEnd(result, columns, setColumns)}>
       <Container withMarginTop={false}>
         <PageHeading title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
-        <div className="min-h-fullmd:min-h-[70vh] mt-8 flex w-full flex-col space-y-4 md:flex-row md:space-y-0">
+        <div className="mt-8 flex min-h-full w-full flex-col space-y-4 md:min-h-[70vh] md:flex-row md:space-y-0">
           {hydrate ? (
             Object.entries(columns).map(([columnId, column]) => (
               <TaskColumn key={columnId} columnId={columnId} column={column} />

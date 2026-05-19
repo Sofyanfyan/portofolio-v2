@@ -14,14 +14,9 @@
     "coverage": "vitest --coverage --run",
     "prepare": "husky"
   },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/codesofyan/v2.codesofyan.com"
-  },
   "homepage": "https://www.codesofyan.com",
   "dependencies": {
-    "@codesofyan/use-hydration-zustand": "^1.0.2",
+    "@codebayu/use-hydration-zustand": "^1.0.2",
     "@ctrl/react-adsense": "^1.7.0",
     "@hello-pangea/dnd": "^16.3.0",
     "@next/third-parties": "^14.2.3",

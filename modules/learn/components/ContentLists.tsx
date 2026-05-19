@@ -1,3 +1,5 @@
+'use client'
+
 import EmptyState from '@/components/elements/EmptyState'
 import { motion } from 'framer-motion'
 
