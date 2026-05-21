@@ -62,7 +62,7 @@ export default function ProfileHeader({ expandMenu, imageSize }: ProfileHeaderPr
       />
       <div className="mt-1 flex items-center gap-2">
         <Link href="/" passHref>
-          <h2 className="font-sora flex-grow whitespace-nowrap text-lg font-medium lg:text-xl 3xl:text-2xl">
+          <h2 className="flex-grow whitespace-nowrap font-sora text-lg font-medium lg:text-xl 3xl:text-2xl">
             Achmad Sofyan
           </h2>
         </Link>
@@ -73,7 +73,7 @@ export default function ProfileHeader({ expandMenu, imageSize }: ProfileHeaderPr
       <Link
         href={DEVTO_PROFILE}
         target="_blank"
-        className="font-sora hidden text-sm text-neutral-600 transition-all duration-300 hover:text-neutral-700 dark:text-neutral-500 dark:hover:text-neutral-400 lg:flex 3xl:text-lg"
+        className="hidden font-sora text-sm text-neutral-600 transition-all duration-300 hover:text-neutral-700 dark:text-neutral-500 dark:hover:text-neutral-400 lg:flex 3xl:text-lg"
       >
         @sofyanfyan
       </Link>

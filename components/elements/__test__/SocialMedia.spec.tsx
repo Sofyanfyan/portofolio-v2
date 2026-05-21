@@ -17,7 +17,7 @@ describe('SocialMedia Component', () => {
     expect(container).toBeTruthy()
     expect(container.className).toBe('flex flex-col space-y-1')
     expect(text).toBeTruthy()
-    expect(text.className).toBe('font-sora mb-2 ml-2 mt-1 text-sm text-neutral-600 dark:text-neutral-500')
+    expect(text.className).toBe('mb-2 ml-2 mt-1 font-sora text-sm text-neutral-600 dark:text-neutral-500')
     expect(itemsContainer).toBeTruthy()
     expect(itemsContainer.className).toBe('flex justify-around space-x-2 px-5 pt-2 lg:justify-between')
     expect(items).toBeTruthy()

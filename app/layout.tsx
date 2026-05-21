@@ -3,9 +3,10 @@ import type { Viewport } from 'next'
 import Analytics from '@/components/elements/Analytics'
 import GoogleAdsense from '@/components/elements/GoogleAdsense'
 import Layouts from '@/components/layouts/index'
-import { inter, robotoCondensed, soraSans } from '@/common/styles/fonts'
 import { GeistSans } from 'geist/font/sans'
 import NextTopLoader from 'nextjs-toploader'
+
+import { inter, robotoCondensed, soraSans } from '@/common/styles/fonts'
 
 import ThemeProviderContext from '../stores/theme'
 import './globals.css'

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import Breakline from '@/components/elements/Breakline'
 
 import { CodewarsData } from '@/common/types/codewars'
@@ -8,15 +7,14 @@ import Contributions from './Contributions'
 import PageSpeed from './PageSpeed'
 
 interface DashboardProps {
-  githubData: any
   codewarsData: CodewarsData | null
   pageSpeedData: Record<string, unknown>
 }
-export default function Dashboard({ githubData, codewarsData, pageSpeedData }: DashboardProps) {
+export default function Dashboard({ codewarsData, pageSpeedData }: DashboardProps) {
   return (
     <section className="flex flex-col">
       <PageSpeed data={pageSpeedData} />
-      <Contributions githubData={githubData} />
+      <Contributions />
       <Breakline />
       <Codewars codewarsData={codewarsData} />
     </section>

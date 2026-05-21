@@ -45,7 +45,7 @@ describe('MeProfile Component', () => {
   it('Should render author name text', () => {
     const text = screen.getByText('Achmad Sofyan')
     expect(text).toBeTruthy()
-    expect(text.className).toBe('font-sora flex-grow text-lg font-medium lg:text-xl')
+    expect(text.className).toBe('flex-grow font-sora text-lg font-medium lg:text-xl')
   })
 
   it('Should render tagline text', () => {

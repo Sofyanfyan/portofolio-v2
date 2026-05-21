@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from 'next/link'
 
 import SectionHeading from '@/components/elements/SectionHeading'
@@ -7,16 +6,11 @@ import { BsGithub as GithubIcon } from 'react-icons/bs'
 
 import { GITHUB_ACCOUNTS } from '@/common/constant/github'
 
-import Calendar from './Calendar'
-import Overview from './Overview'
+import GitHubContributionCalendar from './GitHubContributionCalendar'
 
-type ContributionsProps = {
-  githubData: any
-}
-
-export default function Contributions({ githubData }: ContributionsProps) {
+export default function Contributions() {
   return (
-    <section className="flex flex-col gap-y-2">
+    <section className="flex w-full min-w-0 flex-col gap-y-2">
       <SectionHeading title="Contributions" icon={<GithubIcon className="mr-1" />} />
       <SectionSubHeading>
         <p className="dark:text-neutral-400">My public contributions from last year on GitHub.</p>
@@ -30,14 +24,9 @@ export default function Contributions({ githubData }: ContributionsProps) {
         </Link>
       </SectionSubHeading>
 
-      {!githubData && <div className="dark:text-neutral-400">No Data</div>}
-
-      {githubData && (
-        <div className="space-y-3">
-          <Overview data={githubData} />
-          <Calendar data={githubData} />
-        </div>
-      )}
+      <div className="w-full min-w-0 space-y-3">
+        <GitHubContributionCalendar username={GITHUB_ACCOUNTS.username} />
+      </div>
     </section>
   )
 }
