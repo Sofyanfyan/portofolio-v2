@@ -1,22 +1,22 @@
 import Breakline from '@/components/elements/Breakline'
 
-import { CodewarsData } from '@/common/types/codewars'
+import { HackerRankBadgesResponse } from '@/common/types/hackerrank'
 
-import Codewars from './Codewars'
 import Contributions from './Contributions'
+import HackerRank from './HackerRank'
 import PageSpeed from './PageSpeed'
 
 interface DashboardProps {
-  codewarsData: CodewarsData | null
+  hackerRankData: HackerRankBadgesResponse
   pageSpeedData: Record<string, unknown>
 }
-export default function Dashboard({ codewarsData, pageSpeedData }: DashboardProps) {
+export default function Dashboard({ hackerRankData, pageSpeedData }: DashboardProps) {
   return (
     <section className="flex flex-col">
       <PageSpeed data={pageSpeedData} />
       <Contributions />
       <Breakline />
-      <Codewars codewarsData={codewarsData} />
+      <HackerRank hackerRankData={hackerRankData} />
     </section>
   )
 }

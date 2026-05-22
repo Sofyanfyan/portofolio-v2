@@ -10,4 +10,5 @@ export const DEVTO_PROFILE = 'https://dev.to/sofyanfyan'
 export const PAGESPEED_URL = 'https://pagespeed.web.dev/'
 
 export const SAWERIA_URL = 'https://saweria.co/codesofyan'
-export const CODEWARS_URL = 'https://www.codewars.com/'
+export const HACKERRANK_USERNAME = 'suzyan'
+export const HACKERRANK_URL = `https://www.hackerrank.com/${HACKERRANK_USERNAME}`

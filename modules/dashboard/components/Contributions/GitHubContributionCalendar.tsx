@@ -21,9 +21,7 @@ function getResponsiveBlockSize(containerWidth: number) {
   }
 
   const availableCalendarWidth = Math.max(containerWidth - WEEKDAY_LABEL_SPACE, 0)
-  const fittedBlockSize = Math.floor(
-    (availableCalendarWidth + BLOCK_MARGIN) / CONTRIBUTION_WEEK_COUNT - BLOCK_MARGIN
-  )
+  const fittedBlockSize = Math.floor((availableCalendarWidth + BLOCK_MARGIN) / CONTRIBUTION_WEEK_COUNT - BLOCK_MARGIN)
 
   return Math.min(MAX_BLOCK_SIZE, Math.max(MIN_BLOCK_SIZE, fittedBlockSize))
 }
