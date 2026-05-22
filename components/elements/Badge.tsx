@@ -12,48 +12,28 @@ interface BadgeProps {
   size?: 'small' | 'medium' | 'large'
 }
 
+type BadgeSize = NonNullable<BadgeProps['size']>
+
+const BADGE_VARIANT_COLORS: Record<IBadgeVariant, string> = {
+  primary: 'bg-neutral-200 dark:bg-neutral-700',
+  secondary: 'bg-neutral-700 text-white dark:bg-neutral-200 dark:text-black',
+  success: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-200 dark:text-black',
+  danger: 'bg-red-100 text-red-700 dark:bg-red-200 dark:text-black',
+  warning: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-200 dark:text-black',
+  info: 'bg-cyan-100 text-cyan-700 dark:bg-cyan-200 dark:text-black'
+}
+
+const BADGE_SIZES: Record<BadgeSize, string> = {
+  small: 'px-2 py-[1px] text-[10px]',
+  medium: 'px-2 py-1 text-xs',
+  large: 'px-3 py-2 text-xs'
+}
+
 export default function Badge(props: BadgeProps) {
   const { children, variant = 'primary', size = 'medium', href, target } = props
+  const variantColor = BADGE_VARIANT_COLORS[variant]
+  const chooseSize = BADGE_SIZES[size]
 
-  let variantColor = ''
-  let chooseSize = ''
-
-  switch (variant) {
-    case 'primary':
-      variantColor = 'bg-neutral-200 dark:bg-neutral-700'
-      break
-    case 'secondary':
-      variantColor = 'bg-neutral-700 text-white dark:bg-neutral-200 dark:text-black'
-      break
-    case 'success':
-      variantColor = 'bg-emerald-100 text-emerald-700 dark:bg-emerald-200 dark:text-black'
-      break
-    case 'danger':
-      variantColor = 'bg-red-100 text-red-700 dark:bg-red-200 dark:text-black'
-      break
-    case 'warning':
-      variantColor = 'bg-yellow-100 text-yellow-700 dark:bg-yellow-200 dark:text-black'
-      break
-    case 'info':
-      variantColor = 'bg-cyan-100 text-cyan-700 dark:bg-cyan-200 dark:text-black'
-      break
-    default:
-      variantColor = 'bg-neutral-200 dark:bg-neutral-700'
-  }
-
-  switch (size) {
-    case 'small':
-      chooseSize = 'px-2 py-[1px] text-[10px]'
-      break
-    case 'medium':
-      chooseSize = 'px-2 py-1 text-xs'
-      break
-    case 'large':
-      chooseSize = 'px-3 py-2 text-xs'
-      break
-    default:
-      chooseSize = 'px-2 py-1 text-xs'
-  }
   if (href)
     return (
       <Link

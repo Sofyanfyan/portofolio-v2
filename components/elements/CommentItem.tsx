@@ -10,14 +10,13 @@ export default function CommentItem({ body_html, created_at, user }: CommentItem
   const contentRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (contentRef.current) {
-      const codeElements = contentRef.current.getElementsByTagName('code')
-      for (let i = 0; i < codeElements.length; i++) {
-        const codeElement = codeElements[i]
-        codeElement.classList.add('break-words')
-        codeElement.classList.add('text-xs')
-        codeElement.classList.add('whitespace-pre-wrap')
-      }
+    const contentElement = contentRef.current as HTMLDivElement
+    const codeElements = contentElement.getElementsByTagName('code')
+    for (let i = 0; i < codeElements.length; i++) {
+      const codeElement = codeElements[i]
+      codeElement.classList.add('break-words')
+      codeElement.classList.add('text-xs')
+      codeElement.classList.add('whitespace-pre-wrap')
     }
   }, [body_html])
   return (

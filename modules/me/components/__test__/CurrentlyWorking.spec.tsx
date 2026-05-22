@@ -37,4 +37,11 @@ describe('CurrentlyWorking Component', () => {
     expect(link).toBeTruthy()
     expect(link.className).toBe('font-bold')
   })
+
+  it('Should fallback to home link when career link is empty', () => {
+    const { container } = render(<CurrentlyWorking careers={[{ ...careersMock[0], link: null }]} />)
+    const link = container.querySelector('[data-testid="currently-working-link"]')
+
+    expect(link?.getAttribute('href')).toBe('/')
+  })
 })

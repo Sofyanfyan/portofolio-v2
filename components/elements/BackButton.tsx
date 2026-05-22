@@ -13,11 +13,7 @@ export default function BackButton({ url }: BackButtonProps) {
   const router = useRouter()
 
   const handleOnClick = () => {
-    if (url) {
-      window.location.href = url
-    } else {
-      router.back()
-    }
+    router.back()
   }
 
   const className =

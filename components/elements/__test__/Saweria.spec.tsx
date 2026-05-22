@@ -1,10 +1,34 @@
-import { render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { cleanup, fireEvent, render, screen } from '@testing-library/react'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 
-import Saweria from '../Saweria'
+import { SAWERIA_URL } from '@/common/constant'
+
+const { sendDataLayerMock } = vi.hoisted(() => ({
+  sendDataLayerMock: vi.fn()
+}))
+
+vi.mock('next/navigation', () => ({
+  usePathname: () => '/saweria-page'
+}))
+
+vi.mock('@/common/libs/gtm', () => ({
+  sendDataLayer: sendDataLayerMock
+}))
+
+vi.mock('@next/third-parties/google', () => ({
+  sendGTMEvent: sendDataLayerMock
+}))
 
 describe('Saweria Component', () => {
-  it('Should render Saweria with text component', () => {
+  afterEach(() => {
+    cleanup()
+    vi.restoreAllMocks()
+    sendDataLayerMock.mockClear()
+  })
+
+  it('Should render Saweria with text component', async () => {
+    const { default: Saweria } = await import('../Saweria')
+
     render(<Saweria withText />)
     const container = screen.getByTestId('saweria-button-with-text')
     expect(container).toBeTruthy()
@@ -13,15 +37,36 @@ describe('Saweria Component', () => {
     )
   })
 
-  it('Should render Buy me a Coffee text', () => {
+  it('Should render Buy me a Coffee text', async () => {
+    const { default: Saweria } = await import('../Saweria')
+
+    render(<Saweria withText />)
+
     const container = screen.getByText('Buy me a Coffee')
     expect(container).toBeTruthy()
   })
 
-  it('Should render Saweria without text component', () => {
+  it('Should render Saweria without text component', async () => {
+    const { default: Saweria } = await import('../Saweria')
+
     render(<Saweria />)
     const container = screen.getByTestId('saweria-button-without-text')
     expect(container).toBeTruthy()
     expect(container.hasAttribute('aria-label')).toBe(true)
+  })
+
+  it('Should send event and open Saweria when clicked', async () => {
+    const { default: Saweria } = await import('../Saweria')
+
+    vi.spyOn(window, 'open').mockImplementation(() => null)
+    render(<Saweria withText />)
+
+    fireEvent.click(screen.getByTestId('saweria-button-with-text'))
+
+    expect(sendDataLayerMock).toHaveBeenCalledWith({
+      event: 'saweria_clicked',
+      page_path: '/saweria-page'
+    })
+    expect(window.open).toHaveBeenCalledWith(SAWERIA_URL, '_blank')
   })
 })

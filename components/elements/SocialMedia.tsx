@@ -37,19 +37,19 @@ export default function SocialMedia({ items, isMePage }: SocialMediaProps) {
         data-testid="social-media-items-container"
         className={cn('flex justify-around space-x-2 px-5 pt-2 lg:justify-between', isMePage && 'space-x-8')}
       >
-        {items?.map((item: ISocialMedia, index: number) => (
+        {items.map((item: ISocialMedia, index: number) => (
           <button
             data-testid="social-media-item"
             key={index}
             onClick={() => handleCardClick(item)}
-            aria-label={item?.title}
+            aria-label={item.title}
           >
-            <Tooltip title={item?.title}>
+            <Tooltip title={item.title}>
               <div
                 data-testid="social-media-icon"
                 className="text-neutral-700 transition duration-300 hover:text-neutral-900 dark:text-neutral-400 hover:dark:text-neutral-300 lg:hover:scale-110"
               >
-                {item?.icon}
+                {item.icon}
               </div>
             </Tooltip>
           </button>

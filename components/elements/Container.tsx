@@ -4,6 +4,8 @@ import { useSearchParams } from 'next/navigation'
 
 import { ReactNode } from 'react'
 
+import { cn } from '@/common/libs/cn'
+
 interface ContainerProps {
   children: ReactNode
   className?: string
@@ -13,11 +15,12 @@ interface ContainerProps {
 
 export default function Container({ children, className = '', withMarginTop = true, ...others }: ContainerProps) {
   const searchParams = useSearchParams()
-  const readMode = searchParams?.get('read-mode')
+  const readMode = searchParams.get('read-mode')
+  const hasMarginTop = readMode !== 'true' || withMarginTop
   return (
     <div
       data-testid="container"
-      className={`mb-10 ${(readMode !== 'true' || withMarginTop) && 'mt-6'} p-4 md:p-8 lg:pr-0 ${className}`}
+      className={cn('mb-10 p-4 md:p-8 lg:pr-0', hasMarginTop && 'mt-6', className)}
       {...others}
     >
       {children}

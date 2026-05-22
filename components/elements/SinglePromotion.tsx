@@ -1,5 +1,3 @@
-import AdsBanner from '@/components/elements/AdsPlaceholder'
-
 import { IAdsBanner } from '@/common/types/ads'
 
 interface SinglePromotionProps {
@@ -7,6 +5,6 @@ interface SinglePromotionProps {
 }
 
 export default function SinglePromotion({ data }: SinglePromotionProps) {
-  if (!data) return null
-  return <AdsBanner data={data} />
+  void data
+  return null
 }
