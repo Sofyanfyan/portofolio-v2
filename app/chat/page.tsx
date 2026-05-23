@@ -9,8 +9,8 @@ import ChatRoom from '@/modules/chat'
 
 export const metadata: Metadata = {
   title: `Chat Room ${METADATA.exTitle}`,
-  description: 'The community chat room for codebayu.com',
-  keywords: 'chat room, codebayu, community',
+  description: 'The community chat room for codesofyan.com',
+  keywords: 'chat room, codesofyan, community',
   alternates: {
     canonical: `${process.env.DOMAIN}/chat`
   }

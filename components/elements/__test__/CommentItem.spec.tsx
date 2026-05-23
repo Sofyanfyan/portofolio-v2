@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import { ClassAttributes, ImgHTMLAttributes } from 'react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
@@ -56,5 +56,17 @@ describe('CommentItem Component', () => {
     const commentBody = screen.getAllByTestId('comment-body')[0]
     expect(commentBody).toBeTruthy()
     expect(commentBody.className).toBe('max-w-[600px] leading-[1.8]')
+  })
+
+  it('Should add readable classes to code elements', async () => {
+    const { container } = render(<CommentItem {...commentsMock[0]} body_html="<p><code>const value = 1</code></p>" />)
+
+    await waitFor(() => {
+      const code = container.querySelector('code')
+
+      expect(code?.classList.contains('break-words')).toBe(true)
+      expect(code?.classList.contains('text-xs')).toBe(true)
+      expect(code?.classList.contains('whitespace-pre-wrap')).toBe(true)
+    })
   })
 })

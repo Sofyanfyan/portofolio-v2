@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 
-import { getCareers, getPromotions } from '@/services/codebayu'
+import { getCareers, getPromotions } from '@/services/codesofyan'
 
 import { METADATA } from '@/common/constant/metadata'
 import { IAdsBanner } from '@/common/types/ads'

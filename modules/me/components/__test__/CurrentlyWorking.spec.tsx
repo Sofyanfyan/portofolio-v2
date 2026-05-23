@@ -11,7 +11,7 @@ vi.mock('next/image', () => ({
   __esModule: true,
   default: (
     props: JSX.IntrinsicAttributes & ClassAttributes<HTMLImageElement> & ImgHTMLAttributes<HTMLImageElement>
-  ) => <img {...props} alt="CodeBayu" />
+  ) => <img {...props} alt="codesofyan" />
 }))
 
 describe('CurrentlyWorking Component', () => {
@@ -36,5 +36,12 @@ describe('CurrentlyWorking Component', () => {
     const link = screen.getByTestId(`currently-working-link`)
     expect(link).toBeTruthy()
     expect(link.className).toBe('font-bold')
+  })
+
+  it('Should fallback to home link when career link is empty', () => {
+    const { container } = render(<CurrentlyWorking careers={[{ ...careersMock[0], link: null }]} />)
+    const link = container.querySelector('[data-testid="currently-working-link"]')
+
+    expect(link?.getAttribute('href')).toBe('/')
   })
 })

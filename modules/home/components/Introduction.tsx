@@ -5,7 +5,7 @@ export default function Introduction() {
   return (
     <section className="space-y-2 bg-cover bg-no-repeat">
       <div className="flex items-center justify-between">
-        <div className="font-sora flex gap-2 text-2xl font-bold lg:text-3xl 3xl:text-4xl">
+        <div className="flex gap-2 font-sora text-2xl font-bold lg:text-3xl 3xl:text-4xl">
           <TypeAnimation sequence={["Hi, I'm Achmad Sofyan", "Hi, I'm Fullstack Developer"]} delay={3000} />
         </div>
         <Saweria />

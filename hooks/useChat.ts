@@ -4,6 +4,7 @@ import { serializeFirestoreDocument } from '@/services/firestore'
 import { addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query } from 'firebase/firestore'
 import { useEffect, useRef, useState } from 'react'
 
+import { canDeleteChatMessage, isSameChatOwner } from '@/common/libs/chat'
 import { firestore } from '@/common/libs/firebase'
 import { IChatProfile, IMessage } from '@/common/types/messages'
 
@@ -19,10 +20,11 @@ export default function useChat({ profile }: { profile: IChatProfile | null }) {
 
   async function sendMessage(message: string) {
     if (!profile) {
-      return notif('Please fill your profile first')
+      return notif('Please sign in with Google first')
     }
 
     await addDoc(collection(firestore, 'chat_messages'), {
+      uid: profile.uid,
       name: profile.name,
       email: profile.email,
       image: profile.image || '',
@@ -35,11 +37,44 @@ export default function useChat({ profile }: { profile: IChatProfile | null }) {
   }
 
   async function deleteMessage(id: string) {
+    if (!profile) {
+      return notif('Please sign in with Google first')
+    }
+
+    const message = messages.find(item => item.id === id)
+
+    if (!message) {
+      return notif('Message not found')
+    }
+
+    if (
+      !isSameChatOwner({
+        email: message.email,
+        sessionEmail: profile.email,
+        sessionUid: profile.uid,
+        uid: message.uid
+      })
+    ) {
+      return notif('You can only delete your own message')
+    }
+
+    if (
+      !canDeleteChatMessage({
+        createdAt: message.created_at,
+        email: message.email,
+        sessionEmail: profile.email,
+        sessionUid: profile.uid,
+        uid: message.uid
+      })
+    ) {
+      return notif('Messages can only be deleted within 5 minutes')
+    }
+
     await deleteDoc(doc(firestore, 'chat_messages', id))
   }
 
   function clickReply(name: string) {
-    if (!profile) return notif('Please fill your profile to reply')
+    if (!profile) return notif('Please sign in with Google to reply')
     setReply({ isReply: true, name })
   }
 

@@ -6,14 +6,16 @@ import Layouts from '@/components/layouts/index'
 import { GeistSans } from 'geist/font/sans'
 import NextTopLoader from 'nextjs-toploader'
 
+import { inter, robotoCondensed, soraSans } from '@/common/styles/fonts'
+
 import ThemeProviderContext from '../stores/theme'
 import './globals.css'
 
 // export const metadata: Metadata = {
-//   applicationName: 'codebayu',
+//   applicationName: 'codesofyan',
 //   manifest: '/manifest.json',
 //   appleWebApp: {
-//     title: 'codebayu',
+//     title: 'codesofyan',
 //     capable: true,
 //     statusBarStyle: 'default'
 //   },
@@ -49,7 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <GoogleAdsense />
-      <body className={GeistSans.className}>
+      <body className={`${GeistSans.className} ${inter.variable} ${robotoCondensed.variable} ${soraSans.variable}`}>
         <NextTopLoader
           color="#05b6d3"
           initialPosition={0.08}

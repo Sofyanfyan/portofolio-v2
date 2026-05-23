@@ -24,14 +24,14 @@ export default function Embed() {
     <blockquote
       data-testid="tiktok-embed"
       className="tiktok-embed"
-      cite="https://www.tiktok.com/@codebayu.com"
-      data-unique-id="codebayu.com"
+      cite="https://www.tiktok.com/@codesofyan.com"
+      data-unique-id="codesofyan.com"
       data-embed-type="creator"
       style={{ maxWidth: '780px', minWidth: '288px' }}
     >
       <section>
-        <a target="_blank" href="https://www.tiktok.com/@codebayu.com?refer=creator_embed">
-          @codebayu.com
+        <a target="_blank" href="https://www.tiktok.com/@codesofyan.com?refer=creator_embed">
+          @codesofyan.com
         </a>
       </section>
     </blockquote>

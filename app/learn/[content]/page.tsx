@@ -5,7 +5,7 @@ import BackButton from '@/components/elements/BackButton'
 import Container from '@/components/elements/Container'
 import PageHeading from '@/components/elements/PageHeading'
 import { getLearnArticles } from '@/services/blog'
-import { getLearns } from '@/services/codebayu'
+import { getLearns } from '@/services/codesofyan'
 
 import { METADATA } from '@/common/constant/metadata'
 

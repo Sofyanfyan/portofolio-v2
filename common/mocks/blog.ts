@@ -6,11 +6,11 @@ export const commentsMock = [
     body_html: '<p>Hi, kindly leave a like and comment if you got new insight! 🔥</p>\n\n',
     user: {
       name: 'Achmad Sofyan',
-      username: 'codebayu',
+      username: 'codesofyan',
       twitter_username: null,
-      github_username: 'codebayu',
+      github_username: 'codesofyan',
       user_id: 1145348,
-      website_url: 'https://www.codebayu.com/',
+      website_url: 'https://www.codesofyan.com/',
       profile_image:
         'https://res.cloudinary.com/practicaldev/image/fetch/s--HRuSfXrd--/c_fill,f_auto,fl_progressive,h_640,q_auto,w_640/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/1145348/7afdddab-c142-442a-b714-fea84d9a2b0d.png',
       profile_image_90:
@@ -24,11 +24,11 @@ export const commentsMock = [
         body_html: '<p>Hi, kindly leave a like and comment if you got new insight! 🔥</p>\n\n',
         user: {
           name: 'Achmad Sofyan',
-          username: 'codebayu',
+          username: 'codesofyan',
           twitter_username: null,
-          github_username: 'codebayu',
+          github_username: 'codesofyan',
           user_id: 1145348,
-          website_url: 'https://www.codebayu.com/',
+          website_url: 'https://www.codesofyan.com/',
           profile_image:
             'https://res.cloudinary.com/practicaldev/image/fetch/s--HRuSfXrd--/c_fill,f_auto,fl_progressive,h_640,q_auto,w_640/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/1145348/7afdddab-c142-442a-b714-fea84d9a2b0d.png',
           profile_image_90:

@@ -1,5 +1,3 @@
-import Image from 'next/image'
-
 import Tooltip from '@/components/elements/Tooltip'
 import { formatDistanceToNow } from 'date-fns'
 import { motion } from 'framer-motion'
@@ -8,11 +6,16 @@ import { FiTrash2 as DeleteIcon } from 'react-icons/fi'
 import { ImReply } from 'react-icons/im'
 import { MdVerified as VerifiedIcon } from 'react-icons/md'
 
+import { canDeleteChatMessage, isChatAuthor } from '@/common/libs/chat'
 import { IMessage } from '@/common/types/messages'
 
+import ChatAvatar from './ChatAvatar'
+
 interface IChatItemProps extends IMessage {
+  currentTime: number
   deleteMessage: (id: string) => void
   sessionEmail: string
+  sessionUid: string
   clickReply: (name: string) => void
 }
 
@@ -21,22 +24,27 @@ export default function ChatItem({
   name,
   message,
   image,
+  uid,
   email,
   created_at,
   sessionEmail,
+  sessionUid,
+  currentTime,
   is_reply,
   reply_to,
   deleteMessage,
   clickReply
 }: IChatItemProps) {
   const [onHover, setOnHover] = useState(false)
-  const authorEmail = process.env.NEXT_PUBLIC_AUTHOR_EMAIL as string
   const time = formatDistanceToNow(new Date(created_at), { addSuffix: true })
-  const initials = name
-    .split(' ')
-    .slice(0, 2)
-    .map(item => item.charAt(0).toUpperCase())
-    .join('')
+  const canDeleteMessage = canDeleteChatMessage({
+    createdAt: created_at,
+    email,
+    now: currentTime,
+    sessionEmail,
+    sessionUid,
+    uid
+  })
 
   return (
     <motion.div
@@ -45,13 +53,7 @@ export default function ChatItem({
       animate={{ opacity: 1, y: 0 }}
       className="flex w-full items-end space-x-2"
     >
-      {image ? (
-        <Image src={image} alt={name} width={40} height={40} className="mb-6 rounded-full" />
-      ) : (
-        <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-full bg-neutral-200 text-xs font-semibold text-neutral-700 dark:bg-neutral-800 dark:text-neutral-200">
-          {initials}
-        </div>
-      )}
+      <ChatAvatar name={name} image={image} className="mb-6" />
       <div className="flex w-full flex-col space-y-[2px]">
         <div
           className="flex w-full max-w-[90%] items-end space-x-2"
@@ -85,7 +87,7 @@ export default function ChatItem({
         <div className="flex items-center space-x-1 text-neutral-500">
           <div className="flex items-center space-x-1">
             <span className="text-xs">{name}</span>
-            {authorEmail === email && (
+            {isChatAuthor(email) && (
               <Tooltip title="Author">
                 <VerifiedIcon size={15} className="text-blue-400" />
               </Tooltip>
@@ -95,10 +97,12 @@ export default function ChatItem({
           <span className="text-xs ">{time}</span>
         </div>
       </div>
-      {sessionEmail === email && (
-        <button onClick={() => deleteMessage(id)} aria-label="Delete">
-          <DeleteIcon size={15} className="text-red-500" />
-        </button>
+      {canDeleteMessage && (
+        <Tooltip title="Delete message">
+          <button onClick={() => deleteMessage(id)} aria-label="Delete">
+            <DeleteIcon size={15} className="text-red-500" />
+          </button>
+        </Tooltip>
       )}
     </motion.div>
   )

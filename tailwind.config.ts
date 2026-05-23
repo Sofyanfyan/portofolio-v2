@@ -7,7 +7,7 @@ const config = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './common/**/*.{js,ts,jsx,tsx,mdx}',
     './modules/**/*.{js,ts,jsx,tsx,mdx}',
-    './content/**/*.{js,ts,jsx,tsx,mdx}'
+    './contents/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   prefix: '',
   theme: {
@@ -113,7 +113,9 @@ const config = {
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
       },
       fontFamily: {
-        'roboto-condensed': ['var(--robotoCondensed-fon)']
+        inter: ['var(--inter-font)', 'sans-serif'],
+        sora: ['var(--soraSans-font)', 'sans-serif'],
+        'roboto-condensed': ['var(--robotoCondensed-font)', 'sans-serif']
       }
     }
   },

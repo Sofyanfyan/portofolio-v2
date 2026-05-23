@@ -4,7 +4,7 @@ import { unstable_noStore as noStore } from 'next/cache'
 import Container from '@/components/elements/Container'
 import StructuredData from '@/components/elements/StructuredData'
 import { getLatestArticles } from '@/services/blog'
-import { getLearns, getPromotions, getServices } from '@/services/codebayu'
+import { getLearns, getPromotions, getServices } from '@/services/codesofyan'
 import { Person, WithContext } from 'schema-dts'
 
 import { METADATA } from '@/common/constant/metadata'

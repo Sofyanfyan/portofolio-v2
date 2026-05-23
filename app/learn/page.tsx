@@ -3,7 +3,7 @@ import { unstable_noStore as noStore } from 'next/cache'
 
 import Container from '@/components/elements/Container'
 import PageHeading from '@/components/elements/PageHeading'
-import { getLearns } from '@/services/codebayu'
+import { getLearns } from '@/services/codesofyan'
 
 import { METADATA } from '@/common/constant/metadata'
 

@@ -12,14 +12,12 @@ const AnimateCounter = ({ total, ...rest }: AnimateCounterProps) => {
   const initialCount = 0
 
   useEffect(() => {
-    const count = countRef.current
+    const count = countRef.current as HTMLSpanElement
 
     const controls: AnimationPlaybackControls = animate(initialCount, total, {
       duration: 1,
       onUpdate: value => {
-        if (count) {
-          count.textContent = Math.floor(value).toString()
-        }
+        count.textContent = Math.floor(value).toString()
       }
     })
 

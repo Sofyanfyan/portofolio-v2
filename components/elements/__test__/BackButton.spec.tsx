@@ -1,14 +1,23 @@
-import { render, screen } from '@testing-library/react'
-import { useRouter } from 'next-router-mock'
-import { describe, expect, it, vi } from 'vitest'
+import { fireEvent, render, screen } from '@testing-library/react'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import BackButton from '../BackButton'
 
+const { backMock } = vi.hoisted(() => ({
+  backMock: vi.fn()
+}))
+
 vi.mock('next/navigation', () => ({
-  useRouter
+  useRouter: () => ({
+    back: backMock
+  })
 }))
 
 describe('Back Button Component', () => {
+  afterEach(() => {
+    backMock.mockClear()
+  })
+
   it('Should render back button when not passing props', () => {
     render(<BackButton />)
     const button = screen.getByTestId('back-button')
@@ -39,5 +48,14 @@ describe('Back Button Component', () => {
     const icon = screen.getAllByTestId('back-icon')[1]
 
     expect(icon).toBeTruthy()
+  })
+
+  it('Should call router back when clicking back button', () => {
+    const { container } = render(<BackButton />)
+    const button = container.querySelector('[data-testid="back-button"]') as HTMLElement
+
+    fireEvent.click(button)
+
+    expect(backMock).toHaveBeenCalledTimes(1)
   })
 })

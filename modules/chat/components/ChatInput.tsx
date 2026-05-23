@@ -13,7 +13,7 @@ interface IChatForm {
 }
 
 interface IChatInputProps {
-  sendMessage: (message: string) => void
+  sendMessage: (message: string) => Promise<void> | void
   reply: IReply
   cancleReply: () => void
 }
@@ -29,7 +29,7 @@ export default function ChatInput({ reply, sendMessage, cancleReply }: IChatInpu
   } = useForm<IChatForm>()
 
   async function handleFormSubmit(payload: IChatForm) {
-    sendMessage(payload.message)
+    await sendMessage(payload.message)
     reset()
     cancleReply()
   }

@@ -36,9 +36,16 @@ describe('Copyright Component', () => {
     expect(element).toBeTruthy()
   })
 
-  it('Should render codebayu text element', () => {
-    const element = screen.getAllByText('codebayu').at(0)
+  it('Should render codesofyan text element', () => {
+    const element = screen.getAllByText('codesofyan').at(0)
     expect(element).toBeTruthy()
     expect(element?.className).toBe('cursor-pointer hover:dark:text-neutral-400')
+  })
+
+  it('Should render only love icon when not hovered', () => {
+    const { container } = render(<Copyright isHover={false} />)
+
+    expect(container.querySelector('[data-testid="love"]')).toBeTruthy()
+    expect(container.textContent).toBe('❤')
   })
 })

@@ -3,7 +3,7 @@ import { Metadata } from 'next'
 import BackButton from '@/components/elements/BackButton'
 import Container from '@/components/elements/Container'
 import PageHeading from '@/components/elements/PageHeading'
-import { getProjects } from '@/services/codebayu'
+import { getProjects } from '@/services/codesofyan'
 
 import { METADATA } from '@/common/constant/metadata'
 import loadMdxFiles from '@/common/libs/mdx'
