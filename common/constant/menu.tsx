@@ -29,14 +29,14 @@ export const MENU_ITEMS: MenuItemProps[] = [
     isExternal: false,
     eventName: 'Pages: About'
   },
-  {
-    title: 'Projects',
-    href: '/projects',
-    icon: <ProjectIcon />,
-    isShow: true,
-    isExternal: false,
-    eventName: 'Pages: Projects'
-  },
+  // {
+  //   title: 'Projects',
+  //   href: '/projects',
+  //   icon: <ProjectIcon />,
+  //   isShow: true,
+  //   isExternal: false,
+  //   eventName: 'Pages: Projects'
+  // },
 
   {
     title: 'Learn',

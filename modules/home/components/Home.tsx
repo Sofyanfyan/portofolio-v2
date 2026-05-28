@@ -6,7 +6,6 @@ import { ILearn } from '@/common/types/learn'
 import { IServices } from '@/common/types/services'
 
 import Introduction from './Introduction'
-import LatestArticle from './LatestArticle'
 import ServicesList from './ServicesList'
 
 interface HomeProps {
@@ -16,14 +15,13 @@ interface HomeProps {
   services: IServices[]
 }
 
-export default function Home({ articles, learns, promotion, services }: HomeProps) {
+export default function Home({ services }: HomeProps) {
   return (
     <>
       <Introduction />
       <Breakline className="my-20 3xl:my-10" />
       <ServicesList services={services} />
       <Breakline className="my-20 3xl:my-10" />
-      <LatestArticle articles={articles} learns={learns} promotion={promotion} />
     </>
   )
 }
